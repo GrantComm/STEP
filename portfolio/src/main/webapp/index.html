@@ -2,17 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Grant Commodore's Portfolio Project</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+
+    <div class="topnav">
+        <a class="active" href="#aboutme">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="#skills">Skills</a>
     </div>
+
+    <div id="content">
+      <h1 style="text-align:center;">Grant Commodore's Portfolio</h1>
+      <p style="text-align:center;">Hello there! My name is Grant Commodore and I am a sophmore computer
+          science major, mathematics minor at Morehouse College from PG 
+          County Maryland.
+      </p>
+      <p>Click here to get a random fact about me</p>
+      <button onclick="addRandomFact()">Click Me!</button>
+      <div id="greeting-container"></div>
+      </div>
+      
   </body>
 </html>
