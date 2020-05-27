@@ -21,9 +21,7 @@ function addRandomFact() {
       'My favorite tv show is The \'The X-Files\' ', 
       'My zodiac sign is Scorpio', 
       'I love fishing and soccer!'
-    ];
-    
-    alert("Message"); 
+    ]; 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
