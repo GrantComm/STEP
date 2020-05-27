@@ -47,6 +47,11 @@
     text-align: center;
 }
 
+.rowImage{
+    width: 15vw;
+    height: 30vh;
+}
+
 .topnav {
   margin-bottom: 0; 
   overflow: hidden;
