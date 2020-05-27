@@ -5,16 +5,50 @@
   text-align: center; 
 }
 
-.content img{
-    height: 650px;
-    width: auto; 
+#contact {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  text-align: center; 
+  background-color: rgb(207, 205, 205)
+}
+
+#intro {
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  height: auto;
+  text-align: left; 
+  background-color: rgb(207, 205, 205);
+}
+
+#innerIntro{
+    text-align: center; 
+}
+
+#introImage{
+    border-radius: 50%;
+    height: 50%;
+    text-align: right;  
 }
 
 #greeting-container {
   margin-top: 20px;
 }
 
+.row {
+   display: table;
+   width: 100%;
+   table-layout: fixed; 
+   border-spacing: 5px; 
+}
+.column {
+   display: table-cell;
+    text-align: center;
+}
+
 .topnav {
+  margin-bottom: 0; 
   overflow: hidden;
   background-color: #333;
 }
