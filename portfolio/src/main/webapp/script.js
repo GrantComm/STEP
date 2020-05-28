@@ -60,14 +60,14 @@ function showModal(){
 
 }
 
+window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   var mybutton = document.getElementById("myBtn");
   var myNavBar = document.getElementById("topnav");
   // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function() {scrollFunction()};
-  if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
-    myNavBar.style.width = -webkit-fill-available; 
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    myNavBar.style.width = 100; 
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
