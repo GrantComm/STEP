@@ -66,7 +66,7 @@ body{
     height: 30vh;
 }
 
-#topnav {
+.topnav {
   margin-bottom: 0; 
   overflow: hidden;
   background-color: rgb(231, 131, 16);
@@ -78,7 +78,7 @@ body{
 }
 
 /*Sets the default styling for items in the navbar*/
-#topnav a {
+.topnav a {
   /*float: left; */
   color: #f2f2f2;
   text-align: center;
@@ -92,6 +92,10 @@ body{
 #topnav a:hover {
   background-color: #ebf2f8;
   color: black;
+}
+
+.extendedBar{
+    width: 100%; 
 }
 
 

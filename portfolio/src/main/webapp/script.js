@@ -64,13 +64,15 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   var mybutton = document.getElementById("myBtn");
-  var myNavBar = document.getElementById("topnav");
+  var myNavBar = document.getElementById("nav");
   // When the user scrolls down 20px from the top of the document, show the button
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    myNavBar.style.width = 100; 
+  if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
+    myNavBar.classList.add("extendedBar"); 
     mybutton.style.display = "block";
+    
   } else {
     mybutton.style.display = "none";
+    myNavBar.classList.remove("extendedBar");
   }
 }
 
