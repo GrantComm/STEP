@@ -7,14 +7,17 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div class="topnav">
-        <a class="active" href="#aboutme">About Me</a>
+
+    <div id="topnav">
+        <a href="#aboutme">About Me</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
     </div>
+
     <div id="intro">
         <div id="innerIntro">
-            <h1 style="font-size: 65px; margin: 0">Grant Commodore</h1>
+            <h1 style="font-size: 52px; margin: 0">Grant Commodore</h1>
+            <img src="images/profile.jpg" class="profile"> 
             <h2 style="margin:0">Sophmore Computer Science Major, Mathematics Minor</h2>
             <h2 style="margin:0; padding-bottom: 15px;">Aspiring Software Engineer</h2>
         </div>
@@ -23,17 +26,26 @@
         <h2 class="sectionHeader">About Me</h2>
         <hr class="round">
         <div class="row">
-            <div class="column">
+            <div id="education", class="column">
                 <h2>Education</h2>
                 <img class="rowImage" src="images/morehouseLogo.png">
+                <div>
+                    <button class="button", onclick="addRandomFact()">Learn More</button>
+                </div> 
             </div>
-            <div class="column">
+            <div id="interests", class="column">
                 <h2>Interests</h2>
                 <img class="rowImage" src="images/interests.png">
+                <div>
+                    <button class="button", onclick="addRandomFact()">Learn More</button>
+                </div>
             </div>
-            <div class="column">
+            <div id="funFacts", class="column">
                 <h2>Fun Facts</h2>
                 <img class="rowImage" src="images/r2.png">
+                <div>
+                    <button class="button", onclick="addRandomFact()">Learn More</button>
+                </div>
             </div>
         </div>
     </section>
@@ -44,14 +56,23 @@
             <div class="column">
                 <h2>Web</h2>
                 <img class="rowImage" src="images/laptop.png">
+                <div>
+                    <button class="button", onclick="addRandomFact()">See Examples</button>
+                </div>
             </div>
             <div class="column">
                 <h2>Mobile</h2>
                 <img class="rowImage" src="images/phone.png">
+                <div>
+                    <button class="button", onclick="addRandomFact()">See Examples</button>
+                </div>
             </div>
             <div class="column">
                 <h2>General</h2>
                 <img class="rowImage" src="images/general.jpg">
+                <div>
+                    <button class="button", onclick="addRandomFact()">See Examples</button>
+                </div>
             </div>
         </div>
     </section>
@@ -60,25 +81,21 @@
         <hr class="round">
         <div class="row">
             <div class="column">
-                <h2>2+ Years of Experience</h2>
+                <h2>List of Skills</h2>
                 <img class="rowImage" src="images/morehouseLogo.png">
-            </div>
-            <div class="column">
-                <h2>1 Year or less of Experience</h2>
-                <img class="rowImage" src="images/interests.png">
             </div>
         </div>
     </section>
 
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+
     <div id="content">
-        <p style="text-align:center;">
-            Hello there! My name is Grant Commodore and I am a sophmore computer
-            science major, mathematics minor at Morehouse College from PG 
-            County Maryland. I am an aspiring software engineering with an interest in backend and frontend
-            mobile developent. 
+        <h2 class= "sectionHeader", style="padding-top:10px">Connect with Me</h2>
+        <p style="text-align:center; font-size:19px;">
+            Thank you for taking to time to learn a little bit about me!
+            If you have any questions, please feel free to connect on LinkedIn.
         </p>
-        <p>Click here to get a random fact about me</p>
-        <button onclick="addRandomFact()">Click Me!</button>
+        <button class="button", onclick="addRandomFact()">Let's Connect!</button>
         <div id="fact-container"></div>
     </div>
   </body>   

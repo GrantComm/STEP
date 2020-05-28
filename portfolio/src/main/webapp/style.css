@@ -1,8 +1,20 @@
+html{
+  scroll-behavior: smooth;
+  background-color: #ebf2f8; 
+}
+
+body{
+  margin: 0;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: auto;
   text-align: center; 
+  background-color: rgb(207, 205, 205);
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
 }
 
 #contact {
@@ -20,6 +32,8 @@
   height: auto;
   text-align: left; 
   background-color: rgb(207, 205, 205);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 #innerIntro{
@@ -52,35 +66,34 @@
     height: 30vh;
 }
 
-.topnav {
+#topnav {
   margin-bottom: 0; 
   overflow: hidden;
-  background-color: #333;
-  /*position: fixed;*/ 
-  width: 100%;
+  background-color: rgb(231, 131, 16);
+  position: fixed; 
+  width: 360px;
+  height: 45px;
+  border-radius: 50px;
+  text-align: center; 
 }
 
 /*Sets the default styling for items in the navbar*/
-.topnav a {
-  float: left;
+#topnav a {
+  /*float: left; */
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 22px;
+  border-radius: 50px;
 }
 
 /*Changes the color of the hovered item in the navbar*/
-.topnav a:hover {
-  background-color: #ddd;
+#topnav a:hover {
+  background-color: #ebf2f8;
   color: black;
 }
 
-/*Changes the color of the active item in the navbar*/
-.topnav a.active {
-  background-color: rgb(231, 131, 16);
-  color: white;
-}
 
 .sectionHeader{
     padding-top: 15px;
@@ -90,7 +103,7 @@
 }
 
 .round{
-    border-top: 8px solid #bbb;
+    border-top: 8px solid rgb(231, 131, 16);
     border-radius: 5px;
     width: 250px;
     margin-top: 0px;
@@ -102,4 +115,50 @@
 
 .aboutMeSection{
     padding-top: 14px;
+}
+
+.profile {
+    vertical-align: middle;
+    width: 169px;
+    height: 191px;
+    border-radius: 50%;
+}
+
+.button {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+.button:hover{
+    background-color: rgb(244, 247, 244);
+    color: rgb(231, 131, 16); 
+}
+
+#myBtn {
+  /*display: none; */
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(231, 131, 16);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
