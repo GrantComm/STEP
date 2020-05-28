@@ -37,13 +37,13 @@ body{
 }
 
 #innerIntro{
-    text-align: center; 
+  text-align: center; 
 }
 
 #introImage{
-    border-radius: 50%;
-    height: 50%;
-    text-align: right;  
+  border-radius: 50%;
+  height: 50%;
+  text-align: right;  
 }
 
 #greeting-container {
@@ -51,19 +51,19 @@ body{
 }
 
 .row {
-   display: table;
-   width: 100%;
-   table-layout: fixed; 
-   border-spacing: 5px; 
+  display: table;
+  width: 100%;
+  table-layout: fixed; 
+  border-spacing: 5px; 
 }
 .column {
-   display: table-cell;
-    text-align: center;
+  display: table-cell;
+  text-align: center;
 }
 
 .rowImage{
-    width: 15vw;
-    height: 30vh;
+  width: 15vw;
+  height: 30vh;
 }
 
 .topnav {
@@ -79,7 +79,6 @@ body{
 
 /*Sets the default styling for items in the navbar*/
 .topnav a {
-  /*float: left; */
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
@@ -95,37 +94,37 @@ body{
 }
 
 .extendedBar{
-    width: 100%; 
+  width: 100%; 
 }
 
 
 .sectionHeader{
-    padding-top: 15px;
-    text-align: center;
-    font-size: 40px; 
-    margin-bottom: 1px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 40px; 
+  margin-bottom: 1px;
 }
 
 .round{
-    border-top: 8px solid rgb(231, 131, 16);
-    border-radius: 5px;
-    width: 250px;
-    margin-top: 0px;
+  border-top: 8px solid rgb(231, 131, 16);
+  border-radius: 5px;
+  width: 250px;
+  margin-top: 0px;
 }
 
 .sectionRow{
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 .aboutMeSection{
-    padding-top: 14px;
+  padding-top: 14px;
 }
 
 .profile {
-    vertical-align: middle;
-    width: 169px;
-    height: 191px;
-    border-radius: 50%;
+  vertical-align: middle;
+  width: 169px;
+  height: 191px;
+  border-radius: 50%;
 }
 
 .button {
@@ -143,8 +142,8 @@ body{
 }
 
 .button:hover{
-    background-color: rgb(244, 247, 244);
-    color: rgb(231, 131, 16); 
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16); 
 }
 
 #myBtn {

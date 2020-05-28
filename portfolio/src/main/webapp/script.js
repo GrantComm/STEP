@@ -16,41 +16,41 @@
  * Adds a random greeting to the page.
  */
 function addRandomFact() {
-  const facts = [
-      'My favorite color is orange', 
-      'My favorite tv show is \'The X-Files\' ', 
-      'My zodiac sign is Scorpio', 
-      'I love fishing and soccer!', 
-      'My favorite movie is Star Wars: The Empire Strikes Back', 
-      'My favorite music artists are Anderson .Paak, Logic, and Esperanza Spalding'
-    ]; 
-  // Pick a random greeting.
-  const fact = facts[Math.floor(Math.random() * facts.length)];
+    const facts = [
+        'My favorite color is orange',
+        'My favorite tv show is \'The X-Files\' ',
+        'My zodiac sign is Scorpio',
+        'I love fishing and soccer!',
+        'My favorite movie is Star Wars: The Empire Strikes Back',
+        'My favorite music artists are Anderson .Paak, Logic, and Esperanza Spalding'
+    ];
+    // Pick a random greeting.
+    const fact = facts[Math.floor(Math.random() * facts.length)];
 
-  // Add it to the page.
-  const factContainer = document.getElementById('fact-container');
-  factContainer.innerText = fact;
+    // Add it to the page.
+    const factContainer = document.getElementById('fact-container');
+    factContainer.innerText = fact;
 }
 
-function showModal(){
-    
+function showModal() {
+
     //Variables for the about me row
-    var educationModal = document.getElementById("educationModal"); 
+    var educationModal = document.getElementById("educationModal");
     var educationDiv = document.getElementById("education");
-    var interestsModal = document.getElementById("interestsModal"); 
+    var interestsModal = document.getElementById("interestsModal");
     var interestsDiv = document.getElementById("interests");
-    var funFactsModal = document.getElementById("funFactsModal"); 
+    var funFactsModal = document.getElementById("funFactsModal");
     var eduDiv = document.getElementById("funFacts");
 
     //Variables for the projects row
-    var mobileModal = document.getElementById("mobileModal"); 
+    var mobileModal = document.getElementById("mobileModal");
     var mobileDiv = document.getElementById("mobile");
-    var webModal = document.getElementById("webModal"); 
+    var webModal = document.getElementById("webModal");
     var webDiv = document.getElementById("web");
-    var generalModal = document.getElementById("generalModal"); 
-    var generalDiv = document.getElementById("general"); 
+    var generalModal = document.getElementById("generalModal");
+    var generalDiv = document.getElementById("general");
 
-    var span = document.getElementsByClassName("exit")[0]; 
+    var span = document.getElementsByClassName("exit")[0];
 
     window.onclick = function(event) {
         if (event.target == modal) {
@@ -60,26 +60,28 @@ function showModal(){
 
 }
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function() { scrollFunction() };
+
+//Expands or contracts the navbar and displays to top button on scroll
 
 function scrollFunction() {
-  var mybutton = document.getElementById("myBtn");
-  var myNavBar = document.getElementById("nav");
-  // When the user scrolls down 20px from the top of the document, show the button
-  if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
-    myNavBar.classList.add("extendedBar"); 
-    mybutton.style.display = "block";
-    
-  } else {
-    mybutton.style.display = "none";
-    myNavBar.classList.remove("extendedBar");
-  }
+    var mybutton = document.getElementById("myBtn");
+    var myNavBar = document.getElementById("nav");
+    // When the user scrolls down 20px from the top of the document, show the button
+    if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
+        myNavBar.classList.add("extendedBar");
+        mybutton.style.display = "block";
+
+    } else {
+        mybutton.style.display = "none";
+        myNavBar.classList.remove("extendedBar");
+    }
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
 
