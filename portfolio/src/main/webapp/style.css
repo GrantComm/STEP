@@ -56,6 +56,8 @@
   margin-bottom: 0; 
   overflow: hidden;
   background-color: #333;
+  /*position: fixed;*/ 
+  width: 100%;
 }
 
 /*Sets the default styling for items in the navbar*/
@@ -78,4 +80,26 @@
 .topnav a.active {
   background-color: rgb(231, 131, 16);
   color: white;
+}
+
+.sectionHeader{
+    padding-top: 15px;
+    text-align: center;
+    font-size: 40px; 
+    margin-bottom: 1px;
+}
+
+.round{
+    border-top: 8px solid #bbb;
+    border-radius: 5px;
+    width: 250px;
+    margin-top: 0px;
+}
+
+.sectionRow{
+    padding-top: 70px;
+}
+
+.aboutMeSection{
+    padding-top: 14px;
 }
