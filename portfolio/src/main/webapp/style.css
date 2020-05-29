@@ -36,8 +36,17 @@ body{
   border-bottom-right-radius: 50px;
 }
 
-#innerIntro{
+.innerIntro{
   text-align: center; 
+}
+
+.innerIntro >h1{
+    font-size: 52px; 
+    margin: 0
+}
+
+.innerIntro > h2{
+    margin: 0;
 }
 
 #introImage{
