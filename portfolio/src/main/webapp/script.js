@@ -49,34 +49,40 @@ function showModal(typeModal) {
     var modal = document.getElementById("myModal");
     var modalHeader = document.getElementById("modalHeader");
     var modalBody = document.getElementById("modalBody");
+    var modalImage = document.getElementById("modalImage"); 
 
     // When the user clicks the button, open the modal 
     eduButton.onclick = function() {
         modal.style.display = "block";
         modalHeader.innerText = "Education";
+        modalImage.src = 'images/profile.jpg'; 
         modalBody.innerText = "Morehouse College, Class of 2023";
     }
 
     interestsButton.onclick = function() {
         modal.style.display = "block";
         modalHeader.innerText = "Interests";
-        modalBody.innerText = "Backend and Frontend Mobile App Development";
+        modalImage.src = 'images/grantSoccer.jpg'; 
+        modalBody.innerText = "Backend and Frontend Mobile App Development \n Gesture-Based Computing \n Bluetooth Technology";
     }
 
     funFactsButton.onclick = function() {
         modal.style.display = "block";
         modalHeader.innerText = "Fun Facts";
+        modalImage.src = 'images/grantStarWars.jpg'; 
         modalBody.innerText = addRandomFact();
     }
 
     mobileButton.onclick = function() {
         modal.style.display = "block";
+        modalImage.src = 'images/grantShades.jpg';
         modalHeader.innerText = "Mobile Development Projects";
         modalBody.innerHTML = "DFG_Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
     }
 
     webButton.onclick = function() {
         modal.style.display = "block";
+        modalImage.src = 'images/grantFishing.jpg';
         modalHeader.innerText = "Web Development Projects";
         modalBody.innerHTML = "Morehouse Class of 2023 Website".link("https://morehouse23.info/");
     }
@@ -84,12 +90,14 @@ function showModal(typeModal) {
     githubButton.onclick = function() {
         modal.style.display = "block";
         modalHeader.innerText = "Github";
+        modalImage.src = 'images/grantStanding.jpg';
         modalBody.innerHTML = "MyGithub Profile".link("https://github.com/GrantComm");
     }
 
     skillsButton.onclick = function() {
         modal.style.display = "block";
         modalHeader.innerText = "Skills";
+        modalImage.src = 'images/grantWalking.jpg';
         modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
     }
 
