@@ -32,20 +32,20 @@ function addRandomFact() {
 
 function showModal(typeModal) {
 
-    //Variables for the about me row
+    // Variables for the about me row
     var eduButton = document.getElementById("eduButton");
     var interestsButton = document.getElementById("interestsButton");
     var funFactsButton = document.getElementById("funFactsButton");
 
-    //Variables for the projects row
+    // Variables for the projects row
     var mobileButton = document.getElementById("mobileButton");
     var webButton = document.getElementById("webButton");
     var githubButton = document.getElementById("githubButton");
 
-    //Variables for the skills row
+    // Variables for the skills row
     var skillsButton = document.getElementById("skillsButton");
 
-    //Variables for the modal body and header
+    // Variables for the modal body and header
     var modal = document.getElementById("myModal");
     var modalHeader = document.getElementById("modalHeader");
     var modalBody = document.getElementById("modalBody");
@@ -111,7 +111,7 @@ function showModal(typeModal) {
 
 window.onscroll = function() { scrollFunction() };
 
-//Expands or contracts the navbar and displays to top button on scroll
+// Expands or contracts the navbar and displays to top button on scroll
 
 function scrollFunction() {
     var mybutton = document.getElementById("myBtn");
