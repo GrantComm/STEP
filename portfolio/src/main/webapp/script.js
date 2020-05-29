@@ -27,37 +27,78 @@ function addRandomFact() {
     // Pick a random greeting.
     const fact = facts[Math.floor(Math.random() * facts.length)];
 
-    // Add it to the page.
-    const factContainer = document.getElementById('fact-container');
-    factContainer.innerText = fact;
+    return fact;
 }
 
-function showModal() {
+function showModal(typeModal) {
 
     //Variables for the about me row
-    var educationModal = document.getElementById("educationModal");
-    var educationDiv = document.getElementById("education");
-    var interestsModal = document.getElementById("interestsModal");
-    var interestsDiv = document.getElementById("interests");
-    var funFactsModal = document.getElementById("funFactsModal");
-    var eduDiv = document.getElementById("funFacts");
+    var eduButton = document.getElementById("eduButton");
+    var interestsButton = document.getElementById("interestsButton");
+    var funFactsButton = document.getElementById("funFactsButton");
 
     //Variables for the projects row
-    var mobileModal = document.getElementById("mobileModal");
-    var mobileDiv = document.getElementById("mobile");
-    var webModal = document.getElementById("webModal");
-    var webDiv = document.getElementById("web");
-    var generalModal = document.getElementById("generalModal");
-    var generalDiv = document.getElementById("general");
+    var mobileButton = document.getElementById("mobileButton");
+    var webButton = document.getElementById("webButton");
+    var githubButton = document.getElementById("githubButton");
 
-    var span = document.getElementsByClassName("exit")[0];
+    //Variables for the skills row
+    var skillsButton = document.getElementById("skillsButton");
 
+    //Variables for the modal body and header
+    var modal = document.getElementById("myModal");
+    var modalHeader = document.getElementById("modalHeader");
+    var modalBody = document.getElementById("modalBody");
+
+    // When the user clicks the button, open the modal 
+    eduButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Education";
+        modalBody.innerText = "Morehouse College, Class of 2023";
+    }
+
+    interestsButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Interests";
+        modalBody.innerText = "Backend and Frontend Mobile App Development";
+    }
+
+    funFactsButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Fun Facts";
+        modalBody.innerText = addRandomFact();
+    }
+
+    mobileButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Mobile Development Projects";
+        modalBody.innerHTML = "DFG_Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
+    }
+
+    webButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Web Development Projects";
+        modalBody.innerHTML = "Morehouse Class of 2023 Website".link("https://morehouse23.info/");
+    }
+
+    githubButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Github";
+        modalBody.innerHTML = "MyGithub Profile".link("https://github.com/GrantComm");
+    }
+
+    skillsButton.onclick = function() {
+        modal.style.display = "block";
+        modalHeader.innerText = "Skills";
+        modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-
 }
 
 window.onscroll = function() { scrollFunction() };

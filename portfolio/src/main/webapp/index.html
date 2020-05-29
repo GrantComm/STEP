@@ -16,6 +16,19 @@
 		<a href="#skills">Skills</a>
 	</div>
 
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2 id="modalHeader">Modal Header</h2>
+			</div>
+			<div class="modal-body">
+				<p id="modalBody">Some text in the Modal Body</p>
+			</div>
+		</div>
+	</div>
+
 	<div id="intro">
 		<div class="innerIntro">
 			<h1>Grant Commodore</h1>
@@ -30,23 +43,23 @@
 		<div class="row">
 			<div id="education" , class="column">
 				<h2>Education</h2>
-				<img class="rowImage" src="images/morehouseLogo.png">
+				<img class="rowImage" src="images/university.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">Learn More</button>
+					<button id= "eduButton",class="button", onclick="showModal()">Learn More</button>
 				</div>
 			</div>
 			<div id="interests" , class="column">
 				<h2>Interests</h2>
-				<img class="rowImage" src="images/interests.png">
+				<img class="rowImage" src="images/idea.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">Learn More</button>
+					<button id= "interestsButton",class="button", onclick="showModal()">Learn More</button>
 				</div>
 			</div>
 			<div id="funFacts" , class="column">
 				<h2>Fun Facts</h2>
-				<img class="rowImage" src="images/r2.png">
+				<img class="rowImage" src="images/football-ball.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">Learn More</button>
+					<button id= "funFactsButton",class="button", onclick="showModal()">Learn More</button>
 				</div>
 			</div>
 		</div>
@@ -59,21 +72,21 @@
 				<h2>Web</h2>
 				<img class="rowImage" src="images/laptop.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">See Examples</button>
+					<button id= "webButton", class="button", onclick="showModal()">See Examples</button>
 				</div>
 			</div>
 			<div class="column">
 				<h2>Mobile</h2>
-				<img class="rowImage" src="images/phone.png">
+				<img class="rowImage" src="images/mobile.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">See Examples</button>
+					<button id= "mobileButton", class="button", onclick="showModal()">See Examples</button>
 				</div>
 			</div>
 			<div class="column">
-				<h2>General</h2>
-				<img class="rowImage" src="images/general.jpg">
+				<h2>Github</h2>
+				<img class="rowImage" src="images/usb.png">
 				<div>
-					<button class="button", onclick="addRandomFact()">See Examples</button>
+					<button id= "githubButton", class="button", onclick="showModal()">See Examples</button>
 				</div>
 			</div>
 		</div>
@@ -84,9 +97,12 @@
 		<div class="row">
 			<div class="column">
 				<h2>List of Skills</h2>
-				<img class="rowImage" src="images/morehouseLogo.png">
-            </div>
+				<img class="rowImage" src="images/desktop.png">
+				<div>
+					<button id= "skillsButton", class="button", onclick="showModal()">Show Details</button>
+				</div>
 			</div>
+		</div>
 	</section>
 
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
@@ -97,8 +113,11 @@
 			Thank you for taking to time to learn a little bit about me!
 			If you have any questions, please feel free to connect on LinkedIn.
 		</p>
-		<button class="button", onclick="addRandomFact()">Let's Connect!</button>
+		<button class="button", onclick="window.location.href='https://www.linkedin.com/in/grant-commodore-753b98171';">Let's Connect!</button>
 		<div id="fact-container"></div>
+		<div style="text-align:left">Icons made by <a href="https://www.flaticon.com/authors/freepik"
+				title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+				title="Flaticon">www.flaticon.com</a></div>
 	</div>
 </body>
 

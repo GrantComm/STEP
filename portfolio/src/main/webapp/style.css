@@ -30,24 +30,24 @@ body{
   margin-right: auto;
   width: auto;
   height: auto;
-  text-align: left; 
   background-color: rgb(207, 205, 205);
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
 
 .innerIntro{
-  text-align: center; 
+  text-align: center;
 }
 
 .innerIntro >h1{
-    font-size: 52px; 
-    margin: 0
+  font-size: 52px; 
+  margin: 0
 }
 
 .innerIntro > h2{
-    margin: 0;
+  margin: 0;
 }
+
 
 #introImage{
   border-radius: 50%;
@@ -97,7 +97,7 @@ body{
 }
 
 /*Changes the color of the hovered item in the navbar*/
-#topnav a:hover {
+.topnav a:hover {
   background-color: #ebf2f8;
   color: black;
 }
@@ -136,6 +136,12 @@ body{
   border-radius: 50%;
 }
 
+.fishingPhoto{
+  width: 170px;
+  height: 192px;
+  border-radius: 50%; 
+}
+
 .button {
   background-color: rgb(231, 131, 16);
   border: 2px solid rgb(231, 131, 16);
@@ -143,7 +149,6 @@ body{
   padding: 5px;
   text-align: center;
   text-decoration: none;
-  /*display: inline-block; */
   font-size: 13px;
   margin: 7px 2px;
   transition-duration: 1s; 
@@ -172,5 +177,190 @@ body{
 }
 
 #myBtn:hover {
-  background-color: #555;
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
 }
+
+#eduButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#eduButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#interestsButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#interestsButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#funFactsButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#funFactsButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#mobileButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#mobileButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#webButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#webButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#githubButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#githubButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+#skillsButton {
+  background-color: rgb(231, 131, 16);
+  border: 2px solid rgb(231, 131, 16);
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  /*display: inline-block; */
+  font-size: 13px;
+  margin: 7px 2px;
+  transition-duration: 1s; 
+  border-radius: 5px;
+}
+
+#skillsButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: rgb(231, 131, 16);
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */  
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: rgb(231, 131, 16);
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  text-align: center; 
+}
+
