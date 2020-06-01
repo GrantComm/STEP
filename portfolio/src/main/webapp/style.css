@@ -75,7 +75,6 @@ body {
 
 .rowImage {
   width: 15vw;
-  height: 30vh;
 }
 
 .topnav {
@@ -135,12 +134,6 @@ body {
   width: 169px;
   height: 191px;
   border-radius: 50%;
-}
-
-.fishingPhoto {
-  width: 170px;
-  height: 192px;
-  border-radius: 50%; 
 }
 
 .button {
