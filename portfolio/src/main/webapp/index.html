@@ -10,10 +10,11 @@
 
 <body>
 
-	<div id="nav" class="topnav">
+	<div id="navigationMenu" class="topnav">
 		<a href="#aboutme">About Me</a>
 		<a href="#projects">Projects</a>
 		<a href="#skills">Skills</a>
+		<a href="#comment">Comments</a>
 	</div>
 
 	<!-- The Modal -->
@@ -25,7 +26,7 @@
 			</div>
 			<div class="modal-body">
 				<img id= "modalImage" src="">
-				<p id="modalBody">Some text in the Modal Body</p>
+				<p id="modalBody"></p>
 			</div>
 		</div>
 	</div>
@@ -33,6 +34,7 @@
 	<div id="intro">
 		<div class="innerIntro">
 			<h1>Grant Commodore</h1>
+			<p id="test-text"></p>
 			<img src="images/profile.jpg" class="profile">
 			<h2>Sophmore Computer Science Major, Mathematics Minor</h2>
 			<h2 style="padding-bottom: 15px;">Aspiring Software Engineer</h2>
@@ -106,7 +108,8 @@
 		</div>
 	</section>
 
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Back to Top</button>
+	<button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Back to Top</button>
+	<button onclick="showModal()" id="commentButton" title="Submit a Comment">Submit a Comment</button>
 
 	<div id="content">
 		<h2 class="sectionHeader" style="padding-top:10px">Connect with Me</h2>

@@ -82,7 +82,7 @@ body {
   overflow: hidden;
   background-color: var(--primaryColor);
   position: fixed; 
-  width: 360px;
+  width: 450px;
   height: 45px;
   border-radius: 50px;
   text-align: center; 
@@ -154,7 +154,7 @@ body {
   color: var(--primaryColor); 
 }
 
-#myBtn {
+#scrollToTopButton {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -170,7 +170,26 @@ body {
   border-radius: 4px;
 }
 
-#myBtn:hover {
+#scrollToTopButton:hover {
+  background-color: rgb(244, 247, 244);
+  color: var(--primaryColor);
+}
+
+#commentButton {
+  position: fixed;
+  bottom: 20px;
+  left: 30px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: var(--primaryColor);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#commentButton:hover {
   background-color: rgb(244, 247, 244);
   color: var(--primaryColor);
 }
