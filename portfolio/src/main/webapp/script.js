@@ -55,6 +55,7 @@ function showModal() {
   // When the user clicks the button, open the modal 
   eduButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalHeader.innerText = "Education";
     modalImage.src = 'images/profile.jpg';
     modalBody.innerText = "Morehouse College, Class of 2023";
@@ -62,6 +63,7 @@ function showModal() {
 
   interestsButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalHeader.innerText = "Interests";
     modalImage.src = 'images/grantSoccer.jpg';
     modalBody.innerText = "Backend and Frontend Mobile App Development \n Gesture-Based Computing \n Bluetooth Technology";
@@ -69,6 +71,7 @@ function showModal() {
 
   funFactsButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalHeader.innerText = "Fun Facts";
     modalImage.src = 'images/grantStarWars.jpg';
     modalBody.innerText = addRandomFact();
@@ -76,6 +79,7 @@ function showModal() {
 
   mobileButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalImage.src = 'images/grantShades.jpg';
     modalHeader.innerText = "Mobile Development Projects";
     modalBody.innerHTML = "DFG_Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
@@ -83,6 +87,7 @@ function showModal() {
 
   webButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalImage.src = 'images/grantFishing.jpg';
     modalHeader.innerText = "Web Development Projects";
     modalBody.innerHTML = "Morehouse Class of 2023 Website".link("https://morehouse23.info/");
@@ -90,6 +95,7 @@ function showModal() {
 
   githubButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalHeader.innerText = "Github";
     modalImage.src = 'images/grantStanding.jpg';
     modalBody.innerHTML = "MyGithub Profile".link("https://github.com/GrantComm");
@@ -97,6 +103,7 @@ function showModal() {
 
   skillsButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "inline";
     modalHeader.innerText = "Skills";
     modalImage.src = 'images/grantWalking.jpg';
     modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
