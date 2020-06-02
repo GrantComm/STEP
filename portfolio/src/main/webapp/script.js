@@ -32,26 +32,25 @@ function addRandomFact() {
 
 function showModal() {
   // Variable for the comment button
-  var commentsButton = document.getElementById("commentBtn");
+  let commentsButton = document.getElementById("commentBtn");
   // Variables for the about me row
-  var eduButton = document.getElementById("eduButton");
-  var interestsButton = document.getElementById("interestsButton");
-  var funFactsButton = document.getElementById("funFactsButton");
+  let eduButton = document.getElementById("eduButton");
+  let interestsButton = document.getElementById("interestsButton");
+  let funFactsButton = document.getElementById("funFactsButton");
 
   // Variables for the projects row
-  var mobileButton = document.getElementById("mobileButton");
-  var webButton = document.getElementById("webButton");
-  var githubButton = document.getElementById("githubButton");
+  let mobileButton = document.getElementById("mobileButton");
+  let webButton = document.getElementById("webButton");
+  let githubButton = document.getElementById("githubButton");
 
   // Variables for the skills row
-  var skillsButton = document.getElementById("skillsButton");
+  let skillsButton = document.getElementById("skillsButton");
 
   // Variables for the modal body and header
-  var modal = document.getElementById("myModal");
-  var modalHeader = document.getElementById("modalHeader");
-  var modalBody = document.getElementById("modalBody");
-  var modalImage = document.getElementById("modalImage");
-  //var submitButton = document.createElement("button");
+  let modal = document.getElementById("myModal");
+  let modalHeader = document.getElementById("modalHeader");
+  let modalBody = document.getElementById("modalBody");
+  let modalImage = document.getElementById("modalImage");
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function() {
@@ -109,13 +108,13 @@ function showModal() {
     modalHeader.innerText = "Submit a Comment";
     modalBody.innerText = "Comment";
 
-    var commentForm = document.createElement("form");
+    let commentForm = document.createElement("form");
     commentForm.setAttribute('method', "post");
     commentForm.setAttribute('action', "/data");
-    var commentText = document.createElement("input");
+    let commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
     commentText.setAttribute('name', "commentText");
-    var submitButton = document.createElement("input");
+    let submitButton = document.createElement("input");
     submitButton.setAttribute('type', "submit");
     submitButton.setAttribute('value', "Submit");
 
@@ -138,13 +137,12 @@ window.onscroll = function() { scrollFunction() };
 // Expands or contracts the navbar and displays to top button on scroll
 
 function scrollFunction() {
-  var mybutton = document.getElementById("myBtn");
-  var myNavBar = document.getElementById("nav");
+  let mybutton = document.getElementById("myBtn");
+  let myNavBar = document.getElementById("nav");
   // When the user scrolls down 20px from the top of the document, show the button
   if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
     myNavBar.classList.add("extendedBar");
     mybutton.style.display = "block";
-
   } else {
     mybutton.style.display = "none";
     myNavBar.classList.remove("extendedBar");
