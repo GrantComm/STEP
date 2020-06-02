@@ -107,22 +107,22 @@ function showModal() {
     modal.style.display = "block";
     modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
-    modalBody.innerText = "Comment"; 
-    
+    modalBody.innerText = "Comment";
+
     var commentForm = document.createElement("form");
     commentForm.setAttribute('method', "post");
     commentForm.setAttribute('action', "/data");
     var commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
-    commentText.setAttribute('name', "commentText"); 
+    commentText.setAttribute('name', "commentText");
     var submitButton = document.createElement("input");
     submitButton.setAttribute('type', "submit");
     submitButton.setAttribute('value', "Submit");
-    
-    commentForm.appendChild(commentText); 
+
+    commentForm.appendChild(commentText);
     commentForm.appendChild(submitButton);
-    
-    modalBody.appendChild(commentForm); 
+
+    modalBody.appendChild(commentForm);
   }
 
   // When the user clicks anywhere outside of the modal, close it
