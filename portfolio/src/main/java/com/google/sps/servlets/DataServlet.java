@@ -29,7 +29,7 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> comments = new ArrayList<String>(); 
+    List<String> comments = new ArrayList<String>(); 
     String text = getParameter(request, "commentText", "No text submitted");
     comments.add(text);
     
