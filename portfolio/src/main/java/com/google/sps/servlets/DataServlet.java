@@ -27,8 +27,9 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   
-  private ArrayList<String> messages; 
+  //private ArrayList<String> comments; 
   
+  /*
   @Override
   public void init(){
     messages = new ArrayList<String>(); 
@@ -36,22 +37,39 @@ public class DataServlet extends HttpServlet {
     messages.add("Roger Roger"); 
     messages.add("Use the force");
   }
+  */
   
+  /*
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
-    String json = convertToJsonUsingGson(messages);
+    String json = convertToJsonUsingGson(comments);
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+  */
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    ArrayList<String> comments = new ArrayList<String>(); 
+    String text = getParameter(request, "commentText", "No text submitted");
+    comments.add(text);
     
+    response.setContentType("text/html;");
+    response.getWriter().println(text);
   }
   
-  private String convertToJsonUsingGson(ArrayList<String> messages) {
+  private String convertToJsonUsingGson(ArrayList<String> comments) {
     Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    String json = gson.toJson(comments);
     return json;
   }
+
+  private String getParameter(HttpServletRequest request, String commentText, String defaultValue) {
+    String value = request.getParameter(commentText);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+  
 }

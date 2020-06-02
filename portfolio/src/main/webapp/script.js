@@ -32,7 +32,7 @@ function addRandomFact() {
 
 function showModal() {
   // Variable for the comment button
-  var commentsButton = document.getElementById("commentBtn"); 
+  var commentsButton = document.getElementById("commentBtn");
   // Variables for the about me row
   var eduButton = document.getElementById("eduButton");
   var interestsButton = document.getElementById("interestsButton");
@@ -51,6 +51,7 @@ function showModal() {
   var modalHeader = document.getElementById("modalHeader");
   var modalBody = document.getElementById("modalBody");
   var modalImage = document.getElementById("modalImage");
+  //var submitButton = document.createElement("button");
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function() {
@@ -101,15 +102,27 @@ function showModal() {
     modalImage.src = 'images/grantWalking.jpg';
     modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
   }
-  
+
   commentsButton.onclick = function() {
     modal.style.display = "block";
+    modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
-    modalImage.src = 'images/grantWalking.jpg';
-    modalBody.innerText = "Insert Text Input Here";
-    var submitButton = document.createElement("BUTTON");
-    submitButton.innerHTML = "Submit"
-    modalBody.innerHTML.add(submitButton); 
+    modalBody.innerText = "Comment"; 
+    
+    var commentForm = document.createElement("form");
+    commentForm.setAttribute('method', "post");
+    commentForm.setAttribute('action', "/data");
+    var commentText = document.createElement("input");
+    commentText.setAttribute('type', "text");
+    commentText.setAttribute('name', "commentText"); 
+    var submitButton = document.createElement("input");
+    submitButton.setAttribute('type', "submit");
+    submitButton.setAttribute('value', "Submit");
+    
+    commentForm.appendChild(commentText); 
+    commentForm.appendChild(submitButton);
+    
+    modalBody.appendChild(commentForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -150,7 +163,7 @@ async function tester() {
   console.log(result[0]);
   console.log(result[1]);
   console.log(result[2]);
-  document.getElementById("test-text").innerText = result[0];
+  document.getElementById("modalBody").innerText = result[0];
 }
 
 
