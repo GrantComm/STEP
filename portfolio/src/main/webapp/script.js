@@ -24,7 +24,7 @@ function addRandomFact() {
     'My favorite movie is Star Wars: The Empire Strikes Back',
     'My favorite music artists are Anderson .Paak, Logic, and Esperanza Spalding'
   ];
-  // Pick a random greeting.
+  // Pick a random fact
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
   return fact;
@@ -32,7 +32,7 @@ function addRandomFact() {
 
 function showModal() {
   // Variable for the comment button
-  let commentsButton = document.getElementById("commentBtn");
+  let commentButton = document.getElementById("commentButton");
   // Variables for the about me row
   let eduButton = document.getElementById("eduButton");
   let interestsButton = document.getElementById("interestsButton");
@@ -109,7 +109,7 @@ function showModal() {
     modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
   }
 
-  commentsButton.onclick = function() {
+  commentButton.onclick = function() {
     modal.style.display = "block";
     modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
@@ -144,15 +144,15 @@ window.onscroll = function() { scrollFunction() };
 // Expands or contracts the navbar and displays to top button on scroll
 
 function scrollFunction() {
-  let mybutton = document.getElementById("myBtn");
-  let myNavBar = document.getElementById("nav");
+  let scrollToTopButton = document.getElementById("scrollToTopButton");
+  let navigationMenu= document.getElementById("navigationMenu");
   // When the user scrolls down 20px from the top of the document, show the button
   if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
-    myNavBar.classList.add("extendedBar");
-    mybutton.style.display = "block";
+    navigationMenu.classList.add("extendedBar");
+    scrollToTopButton.style.display = "block";
   } else {
-    mybutton.style.display = "none";
-    myNavBar.classList.remove("extendedBar");
+    scrollToTopButton.style.display = "none";
+    navigationMenu.classList.remove("extendedBar");
   }
 }
 

@@ -154,7 +154,7 @@ body {
   color: var(--primaryColor); 
 }
 
-#myBtn {
+#scrollToTopButton {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -170,12 +170,12 @@ body {
   border-radius: 4px;
 }
 
-#myBtn:hover {
+#scrollToTopButton:hover {
   background-color: rgb(244, 247, 244);
   color: var(--primaryColor);
 }
 
-#commentBtn {
+#commentButton {
   position: fixed;
   bottom: 20px;
   left: 30px;
@@ -189,7 +189,7 @@ body {
   border-radius: 4px;
 }
 
-#commentBtn:hover {
+#commentButton:hover {
   background-color: rgb(244, 247, 244);
   color: var(--primaryColor);
 }
