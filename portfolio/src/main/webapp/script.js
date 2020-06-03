@@ -145,7 +145,7 @@ window.onscroll = function() { scrollFunction() };
 
 function scrollFunction() {
   let scrollToTopButton = document.getElementById("scrollToTopButton");
-  let navigationMenu= document.getElementById("navigationMenu");
+  let navigationMenu = document.getElementById("navigationMenu");
   // When the user scrolls down 20px from the top of the document, show the button
   if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
     navigationMenu.classList.add("extendedBar");
@@ -179,7 +179,7 @@ async function loadComments() {
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
-  }); 
+  });
 }
 
 function createCommentElement(comment) {
@@ -188,7 +188,7 @@ function createCommentElement(comment) {
 
   const contentElement = document.createElement('span');
   contentElement.innerText = comment.content;
-  
+
   /*
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
