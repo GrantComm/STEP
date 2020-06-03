@@ -163,17 +163,6 @@ function topFunction() {
 }
 
 async function loadComments() {
-  /*
-  const serverReq = await fetch("/load-comments");
-  const commentSection = document.getElementById("listOfComments");
-  const allComments = await serverReq.json();
-  
-  
-  for(var comment in allComments){
-    commentSection.appendChild(createCommentElement(comment)); 
-  }
-  commentSection.appendChild(allComments);
-  */
   fetch('/comments-list').then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('listofComments');
     comments.forEach((comment) => {
@@ -189,18 +178,7 @@ function createCommentElement(comment) {
   const contentElement = document.createElement('span');
   contentElement.innerText = comment.content;
 
-  /*
-  const deleteButtonElement = document.createElement('button');
-  deleteButtonElement.innerText = 'Delete';
-  deleteButtonElement.addEventListener('click', () => {
-    deleteTask(task);
-
-    // Remove the task from the DOM.
-    taskElement.remove();
-  });
-  */
   commentElement.appendChild(contentElement);
-  //taskElement.appendChild(deleteButtonElement);
   return commentElement;
 }
 

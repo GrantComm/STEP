@@ -31,9 +31,9 @@ public class CommentsListServlet extends HttpServlet {
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
       String content = (String) entity.getProperty("content");
-      long timestamp = (long) entity.getProperty("timestamp");
+      long timestamp_millis = (long) entity.getProperty("timestamp");
 
-      Comment comment = new Comment(id, content, timestamp);
+      Comment comment = new Comment(id, content, timestamp_millis);
       comments.add(comment);
     }
 
