@@ -163,7 +163,7 @@ function topFunction() {
 }
 
 async function loadComments() {
-  fetch('/comments-list').then(response => response.json()).then((comments) => {
+  fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
@@ -180,6 +180,18 @@ function createCommentElement(comment) {
 
   commentElement.appendChild(contentElement);
   return commentElement;
+}
+
+function getNumberOfComments(){
+  const numberOfCommentsMenu = document.getElementById("numberOfComments");
+  let numberOfComments = numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
+  console.log(typeof numberOfComments); 
+  return numberOfComments; 
+}
+
+function changeNumberOfComments(){
+  document.getElementById("commentsList").innerHTML = ""; 
+  loadComments(); 
 }
 
 
