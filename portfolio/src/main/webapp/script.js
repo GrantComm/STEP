@@ -117,7 +117,7 @@ function showModal() {
 
     let commentForm = document.createElement("form");
     commentForm.setAttribute('method', "post");
-    commentForm.setAttribute('action', "/data");
+    commentForm.setAttribute('action', "/new-comment");
     let commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
     commentText.setAttribute('name', "commentText");
@@ -145,7 +145,7 @@ window.onscroll = function() { scrollFunction() };
 
 function scrollFunction() {
   let scrollToTopButton = document.getElementById("scrollToTopButton");
-  let navigationMenu= document.getElementById("navigationMenu");
+  let navigationMenu = document.getElementById("navigationMenu");
   // When the user scrolls down 20px from the top of the document, show the button
   if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
     navigationMenu.classList.add("extendedBar");
@@ -162,13 +162,24 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-async function tester() {
-  const serverReq = await fetch("/data");
-  const result = await serverReq.json();
-  console.log(result[0]);
-  console.log(result[1]);
-  console.log(result[2]);
-  document.getElementById("modalBody").innerText = result[0];
+async function loadComments() {
+  fetch('/comments-list').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('commentsList');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  });
+}
+
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const contentElement = document.createElement('span');
+  contentElement.innerText = comment.content;
+
+  commentElement.appendChild(contentElement);
+  return commentElement;
 }
 
 
