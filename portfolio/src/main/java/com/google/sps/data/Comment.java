@@ -1,7 +1,6 @@
 package com.google.sps.data;
 
 // A comment in the comment list
-
 public final class Comment {
 
   private final long id;
