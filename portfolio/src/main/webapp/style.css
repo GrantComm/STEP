@@ -378,10 +378,7 @@ body {
 #modalImage {
   width: 170px;
   height: 192px;
-  border-radius: 50%; 
-}
-
-#commentList {
+  border-radius: 50%;
   list-style-type: none;
 }
 

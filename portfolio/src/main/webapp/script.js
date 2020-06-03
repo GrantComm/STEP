@@ -164,7 +164,7 @@ function topFunction() {
 
 async function loadComments() {
   fetch('/comments-list').then(response => response.json()).then((comments) => {
-    const commentListElement = document.getElementById('listofComments');
+    const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
