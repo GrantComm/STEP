@@ -27,19 +27,11 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/new-comment")
+public class NewCommentServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    /*
-    List<String> comments = new ArrayList<String>(); 
-    String text = getParameter(request, "commentText", "No text submitted");
-    comments.add(text);
-    
-    response.setContentType("text/html;");
-    response.getWriter().println(text);
-    */
     String text = request.getParameter("commentText");
     long timestamp = System.currentTimeMillis();
 

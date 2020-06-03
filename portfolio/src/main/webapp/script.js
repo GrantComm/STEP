@@ -117,7 +117,7 @@ function showModal() {
 
     let commentForm = document.createElement("form");
     commentForm.setAttribute('method', "post");
-    commentForm.setAttribute('action', "/data");
+    commentForm.setAttribute('action', "/new-comment");
     let commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
     commentText.setAttribute('name', "commentText");
@@ -162,13 +162,46 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-async function tester() {
-  const serverReq = await fetch("/data");
-  const result = await serverReq.json();
-  console.log(result[0]);
-  console.log(result[1]);
-  console.log(result[2]);
-  document.getElementById("modalBody").innerText = result[0];
+async function loadComments() {
+  /*
+  const serverReq = await fetch("/load-comments");
+  const commentSection = document.getElementById("listOfComments");
+  const allComments = await serverReq.json();
+  
+  
+  for(var comment in allComments){
+    commentSection.appendChild(createCommentElement(comment)); 
+  }
+  commentSection.appendChild(allComments);
+  */
+  fetch('/comments-list').then(response => response.json()).then((comments) => {
+    const commentListElement = document.getElementById('listofComments');
+    comments.forEach((comment) => {
+      commentListElement.appendChild(createCommentElement(comment));
+    })
+  }); 
+}
+
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const contentElement = document.createElement('span');
+  contentElement.innerText = comment.content;
+  
+  /*
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteTask(task);
+
+    // Remove the task from the DOM.
+    taskElement.remove();
+  });
+  */
+  commentElement.appendChild(contentElement);
+  //taskElement.appendChild(deleteButtonElement);
+  return commentElement;
 }
 
 
