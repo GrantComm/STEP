@@ -33,12 +33,12 @@ public class CommentsListServlet extends HttpServlet {
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int numComments = getMax(request); 
+    int maxComments = Integer.parseInt(request.getParameter("max")); 
     Query query = new Query("Comment").addSort("timestamp_millis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    if(numComments < 4){
-      for (Entity entity : results.asList(FetchOptions.Builder.withLimit(numComments))) {
+    if(maxComments != -1){
+      for (Entity entity : results.asList(FetchOptions.Builder.withLimit(maxComments))) {
         long id = entity.getKey().getId();
         String content = (String) entity.getProperty("content");
         long timestamp_millis = (long) entity.getProperty("timestamp_millis");
@@ -63,10 +63,5 @@ public class CommentsListServlet extends HttpServlet {
 
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
-  }
-  
-  private int getMax(HttpServletRequest request) {
-    String requestedMaxComments = request.getParameter("max"); 
-    return Integer.parseInt(requestedMaxComments); 
   }
 }

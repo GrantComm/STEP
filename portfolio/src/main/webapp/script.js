@@ -188,7 +188,6 @@ function createCommentElement(comment) {
 function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   let numberOfComments = numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
-  console.log(typeof numberOfComments);
   return numberOfComments;
 }
 
@@ -196,5 +195,3 @@ function changeNumberOfComments() {
   document.getElementById("commentsList").innerHTML = "";
   loadComments();
 }
-
-

@@ -79,6 +79,7 @@ body {
 
 .topnav {
   margin-bottom: 0; 
+  padding-top: 19px; 
   overflow: hidden;
   background-color: var(--primaryColor);
   position: fixed; 
