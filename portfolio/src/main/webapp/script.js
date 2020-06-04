@@ -177,8 +177,11 @@ function createCommentElement(comment) {
 
   const contentElement = document.createElement('span');
   contentElement.innerText = comment.content;
+  const dateElement = document.createElement('p');
+  dateElement.innerText = comment.currentDate;
 
   commentElement.appendChild(contentElement);
+  commentElement.appendChild(dateElement);
   return commentElement;
 }
 

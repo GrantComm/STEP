@@ -16,6 +16,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
+
 
 /** Servlet responsible for listing tasks. */
 @WebServlet("/comments-list")
@@ -33,15 +36,27 @@ public class CommentsListServlet extends HttpServlet {
     int numComments = getMax(request); 
     Query query = new Query("Comment").addSort("timestamp_millis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-
     List<Comment> comments = new ArrayList<>();
-    for (Entity entity : results.asList(FetchOptions.Builder.withLimit(numComments))) {
-      long id = entity.getKey().getId();
-      String content = (String) entity.getProperty("content");
-      long timestamp_millis = (long) entity.getProperty("timestamp_millis");
+    if(numComments < 4){
+      for (Entity entity : results.asList(FetchOptions.Builder.withLimit(numComments))) {
+        long id = entity.getKey().getId();
+        String content = (String) entity.getProperty("content");
+        long timestamp_millis = (long) entity.getProperty("timestamp_millis");
+        String currentDate = (String) entity.getProperty("currentDate");
 
-      Comment comment = new Comment(id, content, timestamp_millis);
-      comments.add(comment);
+        Comment comment = new Comment(id, content, currentDate, timestamp_millis);
+        comments.add(comment);
+      }
+    }else{
+      for(Entity entity : results.asIterable()) {
+        long id = entity.getKey().getId();
+        String content = (String) entity.getProperty("content");
+        long timestamp_millis = (long) entity.getProperty("timestamp_millis");
+        String currentDate = (String) entity.getProperty("currentDate");
+        
+        Comment comment = new Comment(id, content, currentDate, timestamp_millis);
+        comments.add(comment);
+      }
     }
 
     Gson gson = new Gson();

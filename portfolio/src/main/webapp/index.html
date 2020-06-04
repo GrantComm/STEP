@@ -114,15 +114,19 @@
 	<section class="sectionRow" id="comments">
 		<h2 class="sectionHeader">Comments</h2>
 		<hr class="round">
-		<label>Number of Comments</label>
-		<select id = "numberOfComments" onchange="changeNumberOfComments()">
-      <option value = "1">one</option>
-      <option value = "2">two</option>
-      <option value = "3">three</option>
-      <option value = "4">All</option>
-    </select>
-		<ul id="commentsList">
-		</ul>
+		<div id="commentNumberSelector">
+			<label>Number of Comments</label>
+			<select id = "numberOfComments" onchange="changeNumberOfComments()">
+          <option value = "1">one</option>
+          <option value = "2">two</option>
+          <option value = "3">three</option>
+          <option value = "4">All</option>
+        </select>
+		</div>
+		<div id="commentsSection">
+			<ul id="commentsList">
+			</ul>
+		</div>
 	</section>
 
 	<div id="content">

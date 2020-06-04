@@ -25,6 +25,8 @@ import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/new-comment")
@@ -34,9 +36,13 @@ public class NewCommentServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = request.getParameter("commentText");
     long timestamp_millis = System.currentTimeMillis();
-
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    LocalDateTime now = LocalDateTime.now();
+    String currentDate = formatter.format(now).toString();
+    
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("content", text);
+    commentEntity.setProperty("currentDate", currentDate);
     commentEntity.setProperty("timestamp_millis", timestamp_millis);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
