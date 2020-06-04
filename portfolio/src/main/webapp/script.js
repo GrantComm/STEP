@@ -185,16 +185,16 @@ function createCommentElement(comment) {
   return commentElement;
 }
 
-function getNumberOfComments(){
+function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   let numberOfComments = numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
-  console.log(typeof numberOfComments); 
-  return numberOfComments; 
+  console.log(typeof numberOfComments);
+  return numberOfComments;
 }
 
-function changeNumberOfComments(){
-  document.getElementById("commentsList").innerHTML = ""; 
-  loadComments(); 
+function changeNumberOfComments() {
+  document.getElementById("commentsList").innerHTML = "";
+  loadComments();
 }
 
 

@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
 
-/** Servlet responsible for listing tasks. */
+/** Servlet responsible for listing comments. */
 @WebServlet("/comments-list")
 public class CommentsListServlet extends HttpServlet {
   

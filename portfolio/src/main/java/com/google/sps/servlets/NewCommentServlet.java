@@ -28,7 +28,7 @@ import com.google.appengine.api.datastore.Entity;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns a comment*/
 @WebServlet("/new-comment")
 public class NewCommentServlet extends HttpServlet {
   
