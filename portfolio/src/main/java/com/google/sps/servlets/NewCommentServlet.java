@@ -26,18 +26,19 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime; 
+import java.time.*; 
 
 /* Servlet that creates a comment*/
 @WebServlet("/new-comment")
 public class NewCommentServlet extends HttpServlet {
   
+  private static final DateTimeFormatter commentDateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String text = request.getParameter("commentText");
     long timestamp_millis = System.currentTimeMillis();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-    String currentDate = formatter.format(LocalDateTime.now()).toString();
+    String currentDate = commentDateFormat.format(LocalDateTime.now());
     
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("content", text);

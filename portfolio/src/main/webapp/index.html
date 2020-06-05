@@ -116,12 +116,13 @@
     <hr class="round">
     <div id="commentNumberSelector">
       <label>Number of Comments</label>
-      <select id = "numberOfComments" onchange="changeNumberOfComments()">
+      <select id = "numberOfComments" onchange="loadComments()">
         <option value = "1">one</option>
         <option value = "2">two</option>
         <option value = "3">three</option>
         <option value = "-1">All</option>
       </select>
+      <button id= "deleteCommentsButton" class="button" onclick="deleteComments()">Delete All Comments</button>     
     </div>
     <div id="commentsSection">
       <ul id="commentsList">

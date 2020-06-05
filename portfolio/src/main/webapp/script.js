@@ -162,13 +162,18 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-async function loadComments() {
+function loadComments() {
+  document.getElementById("commentsList").innerHTML = "";
   fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
+}
+
+function deleteComments() { 
+  fetch("/delete-comments", {method: "Post"}).then(response => {loadComments()}); 
 }
 
 function createCommentElement(comment) {
@@ -178,7 +183,7 @@ function createCommentElement(comment) {
   const contentElement = document.createElement('span');
   contentElement.innerText = comment.content;
   const dateElement = document.createElement('p');
-  dateElement.innerText = comment.currentDate;
+  dateElement.innerText = String(comment.currentDate);
 
   commentElement.appendChild(contentElement);
   commentElement.appendChild(dateElement);
@@ -189,9 +194,4 @@ function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   let numberOfComments = numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
   return numberOfComments;
-}
-
-function changeNumberOfComments() {
-  document.getElementById("commentsList").innerHTML = "";
-  loadComments();
 }

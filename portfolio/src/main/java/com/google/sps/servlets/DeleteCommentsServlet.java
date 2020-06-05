@@ -1,5 +1,5 @@
 package com.google.sps.servlets;
-
+ 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -16,15 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.format.DateTimeFormatter;
-import java.time.*;  
-
-
+ 
+ 
 /** Servlet responsible for listing comments. */
-@WebServlet("/comments-list")
-public class CommentsListServlet extends HttpServlet {
+@WebServlet("/delete-comments")
+public class DeleteCommentsServlet extends HttpServlet {
   
-  private DatastoreService datastore;
+  private DatastoreService datastore; 
   
   @Override
   public void init(){
@@ -32,29 +30,13 @@ public class CommentsListServlet extends HttpServlet {
   } 
   
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int maxComments = Integer.parseInt(request.getParameter("max")); 
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestamp_millis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withDefaults(); 
-    
-    if(maxComments != -1){
-      fetchOps = FetchOptions.Builder.withLimit(maxComments); 
-    }
-    
-    for (Entity entity : results.asIterable(fetchOps)) {
-      long id = entity.getKey().getId();
-      String content = (String) entity.getProperty("content");
-      long timestamp_millis = (long) entity.getProperty("timestamp_millis");
-      String currentDate = (String) entity.getProperty("currentDate");
-      
-      Comment comment = new Comment(id, content, currentDate, timestamp_millis);
-      comments.add(comment);
-    }
-
-    Gson gson = new Gson();
-    response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+      for (Entity entity : results.asIterable()) {
+        datastore.delete(entity.getKey()); 
+      }
+      response.sendRedirect("/index.html");
   }
 }
