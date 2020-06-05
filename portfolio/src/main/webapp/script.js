@@ -173,7 +173,7 @@ function loadComments() {
 }
 
 function deleteComments() { 
-  fetch("/delete-comments", {method: "Post"}).then(response => {loadComments()}); 
+  fetch("/delete-comments", {method: "Post"}).then(response => loadComments()); 
 }
 
 function createCommentElement(comment) {
@@ -192,6 +192,5 @@ function createCommentElement(comment) {
 
 function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
-  let numberOfComments = numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
-  return numberOfComments;
+  return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }

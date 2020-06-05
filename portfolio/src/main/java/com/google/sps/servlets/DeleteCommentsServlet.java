@@ -35,23 +35,22 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet responsible for listing comments. */
 @WebServlet("/delete-comments")
 public class DeleteCommentsServlet extends HttpServlet {
-  
   private DatastoreService datastore; 
   
   @Override
   public void init(){
     datastore = DatastoreServiceFactory.getDatastoreService();
   } 
-  
+    
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-      for (Entity entity : results.asIterable()) {
-        datastore.delete(entity.getKey()); 
-      }
-      response.sendRedirect("/index.html");
+    for (Entity entity : results.asIterable()) {
+      datastore.delete(entity.getKey()); 
+    }
+    response.sendRedirect("/index.html");
   }
   
 }

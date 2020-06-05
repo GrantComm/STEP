@@ -33,7 +33,7 @@ body {
   margin-right: auto;
   width: auto;
   height: auto;
-  background-color: rgb(207, 205, 205);
+  background-image: url("images/background.jpg");
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
 }
