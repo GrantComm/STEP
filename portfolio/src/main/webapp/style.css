@@ -377,8 +377,7 @@ body {
 }
 
 #modalImage {
-  width: 170px;
-  height: 192px;
+  height: 330px;
   border-radius: 50%;
   list-style-type: none;
 }
