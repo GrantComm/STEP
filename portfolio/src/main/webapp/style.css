@@ -33,6 +33,7 @@ body {
   margin-right: auto;
   width: auto;
   height: auto;
+  background-size:100%;
   background-image: url("images/background.jpg");
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;

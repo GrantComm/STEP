@@ -173,7 +173,7 @@ function loadComments() {
 }
 
 function deleteComments() { 
-  fetch("/delete-comments", {method: "Post"}).then(response => loadComments()); 
+  fetch("/delete-comments", {method: "delete"}).then(response => loadComments()); 
 }
 
 function createCommentElement(comment) {
