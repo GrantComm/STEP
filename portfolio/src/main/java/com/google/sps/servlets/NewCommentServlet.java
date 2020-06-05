@@ -48,18 +48,4 @@ public class NewCommentServlet extends HttpServlet {
     response.sendRedirect("/index.html");
   }
   
-  private String convertToJsonUsingGson(ArrayList<String> comments) {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
-  }
-
-  private String getParameter(HttpServletRequest request, String commentText, String defaultValue) {
-    String value = request.getParameter(commentText);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  }
-  
 }
