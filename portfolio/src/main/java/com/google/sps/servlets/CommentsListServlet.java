@@ -64,7 +64,6 @@ public class CommentsListServlet extends HttpServlet {
       Comment comment = new Comment(content, currentDate, timestampMillis);
       comments.add(comment);
     }
-    
     Gson gson = new Gson();
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(comments));
