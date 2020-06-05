@@ -2,133 +2,145 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Grant Commodore's Portfolio Project</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="script.js"></script>
+  <meta charset="UTF-8">
+  <title>Grant Commodore's Portfolio Project</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 </head>
 
 <body onload="loadComments()">
 
-	<div id="navigationMenu" class="topnav">
-		<a href="#aboutme">About Me</a>
-		<a href="#projects">Projects</a>
-		<a href="#skills">Skills</a>
-		<a href="#comments">Comments</a>
-	</div>
+  <div id="navigationMenu" class="topnav">
+    <a href="#aboutme">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#comments">Comments</a>
+  </div>
 
-	<!-- The Modal -->
-	<div id="myModal" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<h2 id="modalHeader">Modal Header</h2>
-			</div>
-			<div class="modal-body">
-				<img id= "modalImage" src="">
-				<p id="modalBody"></p>
-			</div>
-		</div>
-	</div>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalHeader">Modal Header</h2>
+      </div>
+      <div class="modal-body">
+        <img id= "modalImage" src="">
+        <p id="modalBody"></p>
+      </div>
+    </div>
+  </div>
 
-	<div id="intro">
-		<div class="innerIntro">
-			<h1>Grant Commodore</h1>
-			<p id="test-text"></p>
-			<img src="images/profile.jpg" class="profile">
-			<h2>Sophmore Computer Science Major, Mathematics Minor</h2>
-			<h2 style="padding-bottom: 15px;">Aspiring Software Engineer</h2>
-		</div>
-	</div>
-	<section class="aboutMeSection" id="aboutme">
-		<h2 class="sectionHeader">About Me</h2>
-		<hr class="round">
-		<div class="row">
-			<div id="education" class="column">
-				<h2>Education</h2>
-				<img class="rowImage" src="images/university.png">
-				<div>
-					<button id= "eduButton" class="button" onclick="showModal()">Learn More</button>
-				</div>
-			</div>
-			<div id="interests" class="column">
-				<h2>Interests</h2>
-				<img class="rowImage" src="images/idea.png">
-				<div>
-					<button id= "interestsButton" class="button" onclick="showModal()">Learn More</button>
-				</div>
-			</div>
-			<div id="funFacts" class="column">
-				<h2>Fun Facts</h2>
-				<img class="rowImage" src="images/football-ball.png">
-				<div>
-					<button id= "funFactsButton" class="button" onclick="showModal()">Learn More</button>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="sectionRow" id="projects">
-		<h2 class="sectionHeader">Projects</h2>
-		<hr class="round">
-		<div class="row">
-			<div class="column">
-				<h2>Web</h2>
-				<img class="rowImage" src="images/laptop.png">
-				<div>
-					<button id= "webButton" class="button" onclick="showModal()">See Examples</button>
-				</div>
-			</div>
-			<div class="column">
-				<h2>Mobile</h2>
-				<img class="rowImage" src="images/mobile.png">
-				<div>
-					<button id= "mobileButton" class="button" onclick="showModal()">See Examples</button>
-				</div>
-			</div>
-			<div class="column">
-				<h2>Github</h2>
-				<img class="rowImage" src="images/usb.png">
-				<div>
-					<button id= "githubButton" class="button" onclick="showModal()">See Examples</button>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="sectionRow" id="skills">
-		<h2 class="sectionHeader">Skills</h2>
-		<hr class="round">
-		<div class="row">
-			<div class="column">
-				<h2>List of Skills</h2>
-				<img class="rowImage" src="images/desktop.png">
-				<div>
-					<button id= "skillsButton" class="button" onclick="showModal()">Show Details</button>
-				</div>
-			</div>
-		</div>
-	</section>
+  <div id="intro">
+    <div class="innerIntro">
+      <h1>Grant Commodore</h1>
+      <p id="test-text"></p>
+      <img src="images/profile.jpg" class="profile">
+      <h2>Rising Sophmore Computer Science Major, Mathematics Minor</h2>
+      <h2 style="padding-bottom: 15px;">Aspiring Software Engineer</h2>
+    </div>
+  </div>
+  <section class="aboutMeSection" id="aboutme">
+    <h2 class="sectionHeader">About Me</h2>
+    <hr class="round">
+    <div class="row">
+      <div id="education" class="column">
+        <h2>Education</h2>
+        <img class="rowImage" src="images/university.png">
+        <div>
+          <button id= "eduButton" class="button" onclick="showModal()">Learn More</button>
+        </div>
+      </div>
+      <div id="interests" class="column">
+        <h2>Interests</h2>
+        <img class="rowImage" src="images/idea.png">
+        <div>
+          <button id= "interestsButton" class="button" onclick="showModal()">Learn More</button>
+        </div>
+      </div>
+      <div id="funFacts" class="column">
+        <h2>Fun Facts</h2>
+        <img class="rowImage" src="images/football-ball.png">
+        <div>
+          <button id= "funFactsButton" class="button" onclick="showModal()">Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sectionRow" id="projects">
+    <h2 class="sectionHeader">Projects</h2>
+    <hr class="round">
+    <div class="row">
+      <div class="column">
+        <h2>Web</h2>
+        <img class="rowImage" src="images/laptop.png">
+        <div>
+          <button id= "webButton" class="button" onclick="showModal()">See Examples</button>
+        </div>
+      </div>
+      <div class="column">
+        <h2>Mobile</h2>
+        <img class="rowImage" src="images/mobile.png">
+        <div>
+          <button id= "mobileButton" class="button" onclick="showModal()">See Examples</button>
+        </div>
+      </div>
+      <div class="column">
+        <h2>Github</h2>
+        <img class="rowImage" src="images/usb.png">
+        <div>
+          <button id= "githubButton" class="button" onclick="showModal()">See Examples</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sectionRow" id="skills">
+    <h2 class="sectionHeader">Skills</h2>
+    <hr class="round">
+    <div class="row">
+      <div class="column">
+        <h2>List of Skills</h2>
+        <img class="rowImage" src="images/desktop.png">
+        <div>
+          <button id= "skillsButton" class="button" onclick="showModal()">Show Details</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Back to Top</button>
-	<button onclick="showModal()" id="commentButton" title="Submit a Comment">Submit a Comment</button>
+  <button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Back to Top</button>
+  <button onclick="showModal()" id="commentButton" title="Submit a Comment">Submit a Comment</button>
 
-	<section class="sectionRow" id="comments">
-		<h2 class="sectionHeader">Comments</h2>
-		<hr class="round">
-		<ul id="commentsList">
-		</ul>
-	</section>
+  <section class="sectionRow" id="comments">
+    <h2 class="sectionHeader">Comments</h2>
+    <hr class="round">
+    <div id="commentNumberSelector">
+      <label>Number of Comments</label>
+      <select id = "numberOfComments" onchange="loadComments()">
+        <option value = "1">one</option>
+        <option value = "2">two</option>
+        <option value = "3">three</option>
+        <option value = "-1">All</option>
+      </select>
+      <button id= "deleteCommentsButton" class="button" onclick="deleteComments()">Delete All Comments</button>     
+    </div>
+    <div id="commentsSection">
+      <ul id="commentsList">
+      </ul>
+    </div>
+  </section>
 
-	<div id="content">
-		<h2 class="sectionHeader" style="padding-top:10px">Connect with Me</h2>
-		<p style="text-align:center; font-size:19px;">
-			Thank you for taking some time to learn a little bit about me!
-			If you have any questions, please feel free to connect on LinkedIn.
-		</p>
-		<button class="button" onclick="window.location.href='https://www.linkedin.com/in/grant-commodore-753b98171';">Let's Connect!</button>
-		<div style="text-align:left">Icons made by <a href="https://www.flaticon.com/authors/freepik"
-				title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
-				title="Flaticon">www.flaticon.com</a></div>
-	</div>
+  <div id="content">
+    <h2 class="sectionHeader" style="padding-top:10px">Connect with Me</h2>
+    <p style="text-align:center; font-size:19px;">
+      Thank you for taking some time to learn a little bit about me!
+      If you have any questions, please feel free to connect on LinkedIn.
+    </p>
+    <button class="button" onclick="window.location.href='https://www.linkedin.com/in/grant-commodore-753b98171';">Let's Connect!</button>
+    <div style="text-align:left">Icons made by <a href="https://www.flaticon.com/authors/freepik"
+        title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"
+        title="Flaticon">www.flaticon.com</a></div>
+  </div>
 </body>
 
 </html>

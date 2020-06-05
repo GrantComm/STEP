@@ -13,7 +13,7 @@
 // limitations under the License.
 
 package com.google.sps.servlets;
-
+ 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -30,42 +30,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;  
-
-
+ 
+ 
 /** Servlet responsible for listing comments. */
-@WebServlet("/comments-list")
-public class CommentsListServlet extends HttpServlet {
-  
-  private DatastoreService datastore;
+@WebServlet("/delete-comments")
+public class DeleteCommentsServlet extends HttpServlet {
+  private DatastoreService datastore; 
   
   @Override
   public void init(){
     datastore = DatastoreServiceFactory.getDatastoreService();
   } 
-  
+    
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int maxComments = Integer.parseInt(request.getParameter("max")); 
+  public void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withDefaults(); 
-    
-    if(maxComments != -1){
-      fetchOps = FetchOptions.Builder.withLimit(maxComments); 
+    for (Entity entity : results.asIterable()) {
+      datastore.delete(entity.getKey()); 
     }
-    
-    for (Entity entity : results.asIterable(fetchOps)) {
-      String content = (String)entity.getProperty("content");
-      long timestampMillis = (long)entity.getProperty("timestampMillis");
-      String currentDate = (String)entity.getProperty("currentDate");
-      Comment comment = new Comment(content, currentDate, timestampMillis);
-      comments.add(comment);
-    }
-    Gson gson = new Gson();
-    response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
   }
+  
 }

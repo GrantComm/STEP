@@ -162,8 +162,9 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-async function loadComments() {
-  fetch('/comments-list').then(response => response.json()).then((comments) => {
+function loadComments() {
+  document.getElementById("commentsList").innerHTML = "";
+  fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
@@ -171,15 +172,32 @@ async function loadComments() {
   });
 }
 
+function deleteComments() {
+  fetch("/delete-comments", { method: "delete" }).then(response => loadComments());
+}
+
 function createCommentElement(comment) {
   const commentElement = document.createElement('li');
   commentElement.className = 'comment';
 
-  const contentElement = document.createElement('span');
+  const commentHeader = document.createElement('div');
+  const nameElement = document.createElement('h3');
+  nameElement.innerText = "Anonymous";
+  const dateElement = document.createElement('p');
+  dateElement.innerText = String(comment.currentDate);
+  commentHeader.appendChild(nameElement)
+  commentHeader.appendChild(dateElement);
+  const commentContent = document.createElement('div');
+  const contentElement = document.createElement('p1');
   contentElement.innerText = comment.content;
+  commentContent.appendChild(contentElement);
 
-  commentElement.appendChild(contentElement);
+  commentElement.appendChild(commentHeader);
+  commentElement.appendChild(commentContent);
   return commentElement;
 }
 
-
+function getNumberOfComments() {
+  const numberOfCommentsMenu = document.getElementById("numberOfComments");
+  return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
+}

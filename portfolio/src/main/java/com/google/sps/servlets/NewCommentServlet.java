@@ -21,42 +21,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.sps.data.Comment;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/* Servlet that creates a comment*/
 @WebServlet("/new-comment")
 public class NewCommentServlet extends HttpServlet {
   
+  private static final DateTimeFormatter commentDateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String text = request.getParameter("commentText");
-    long timestamp_millis = System.currentTimeMillis();
-
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("content", text);
-    commentEntity.setProperty("timestamp_millis", timestamp_millis);
-
+    Comment newComment = new Comment(
+      request.getParameter("commentText"), 
+      commentDateFormat.format(LocalDateTime.now()),
+      System.currentTimeMillis());
+      
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+    datastore.put(newComment.makeEntity());
 
     response.sendRedirect("/index.html");
-  }
-  
-  private String convertToJsonUsingGson(ArrayList<String> comments) {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
-  }
-
-  private String getParameter(HttpServletRequest request, String commentText, String defaultValue) {
-    String value = request.getParameter(commentText);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
   }
   
 }
