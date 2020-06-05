@@ -21,10 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.sps.data.Comment;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
@@ -36,14 +36,13 @@ public class NewCommentServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("content", request.getParameter("commentText"));
-    commentEntity.setProperty("currentDate", commentDateFormat.format(LocalDateTime.now()));
-    commentEntity.setProperty("timestampMillis", System.currentTimeMillis());
-    
+    Comment newComment = new Comment(
+      request.getParameter("commentText"), 
+      commentDateFormat.format(LocalDateTime.now()),
+      System.currentTimeMillis());
+      
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+    datastore.put(newComment.makeEntity());
 
     response.sendRedirect("/index.html");
   }
