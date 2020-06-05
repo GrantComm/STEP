@@ -26,7 +26,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import java.time.format.DateTimeFormatter;
-import java.time.*; 
+import java.time.LocalDateTime; 
 
 /* Servlet that creates a comment*/
 @WebServlet("/new-comment")
@@ -36,15 +36,14 @@ public class NewCommentServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String text = request.getParameter("commentText");
-    long timestamp_millis = System.currentTimeMillis();
-    String currentDate = commentDateFormat.format(LocalDateTime.now());
     
     Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("content", text);
-    commentEntity.setProperty("currentDate", currentDate);
-    commentEntity.setProperty("timestamp_millis", timestamp_millis);
-
+    /*
+    commentEntity.setProperty("content", request.getParameter("commentText"));
+    commentEntity.setProperty("currentDate", commentDateFormat.format(LocalDateTime.now()));
+    commentEntity.setProperty("timestampMillis", System.currentTimeMillis());
+    */
+    
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
