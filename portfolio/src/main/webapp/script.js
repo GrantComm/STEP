@@ -58,7 +58,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalHeader.innerText = "Education";
     modalImage.src = 'images/profile.jpg';
-    modalBody.innerText = "Morehouse College, Class of 2023";
+    modalBody.innerText = "I am a rising sophomore at Morehouse College, majoring in Computer Science and minoring in Mathematics";
   }
 
   interestsButton.onclick = function() {
@@ -66,7 +66,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalHeader.innerText = "Interests";
     modalImage.src = 'images/grantSoccer.jpg';
-    modalBody.innerText = "Backend and Frontend Mobile App Development \n Gesture-Based Computing \n Bluetooth Technology";
+    modalBody.innerText = "I am interested in backend and frontend Mobile App Development, gesture-based computing (Tony Stark-like interfaces), and bluetooth technology";
   }
 
   funFactsButton.onclick = function() {
