@@ -37,6 +37,7 @@ function showModal() {
   let eduButton = document.getElementById("eduButton");
   let interestsButton = document.getElementById("interestsButton");
   let funFactsButton = document.getElementById("funFactsButton");
+  funFactsButton.innerText = "Click for a Random Fact";
 
   // Variables for the projects row
   let mobileButton = document.getElementById("mobileButton");
@@ -66,7 +67,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalHeader.innerText = "Interests";
     modalImage.src = 'images/grantSoccer.jpg';
-    modalBody.innerText = "I am interested in backend and frontend Mobile App Development, gesture-based computing (Tony Stark-like interfaces), and bluetooth technology";
+    modalBody.innerText = "I am interested in backend and frontend mobile app development, gesture-based computing (Tony Stark-like interfaces), and bluetooth technology";
   }
 
   funFactsButton.onclick = function() {
@@ -82,7 +83,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantShades.jpg';
     modalHeader.innerText = "Mobile Development Projects";
-    modalBody.innerHTML = "DFG_Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
+    modalBody.innerHTML = "I made a basic mobile app for Destined for Greatness Youth Outreach Center, a youth mentorship organization." + "\n DFG Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
   }
 
   webButton.onclick = function() {
@@ -90,7 +91,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantFishing.jpg';
     modalHeader.innerText = "Web Development Projects";
-    modalBody.innerHTML = "Morehouse Class of 2023 Website".link("https://morehouse23.info/");
+    modalBody.innerHTML = "I made the Morehouse23 website as a resource for students in my class." + "\n Morehouse Class of 2023 Website".link("https://morehouse23.info/");
   }
 
   githubButton.onclick = function() {
@@ -98,15 +99,15 @@ function showModal() {
     modalImage.style.display = "inline";
     modalHeader.innerText = "Github";
     modalImage.src = 'images/grantStanding.jpg';
-    modalBody.innerHTML = "MyGithub Profile".link("https://github.com/GrantComm");
+    modalBody.innerHTML = "View more of my projects on my " + "Github profile".link("https://github.com/GrantComm");
   }
 
   skillsButton.onclick = function() {
     modal.style.display = "block";
     modalImage.style.display = "inline";
-    modalHeader.innerText = "Skills";
+    modalHeader.innerText = "Technologies";
     modalImage.src = 'images/grantWalking.jpg';
-    modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
+    modalBody.innerText = "I have experience using Java, C++, and webtechnologies";
   }
 
   commentButton.onclick = function() {
