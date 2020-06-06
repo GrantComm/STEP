@@ -58,10 +58,11 @@ public class CommentsListServlet extends HttpServlet {
     }
     
     for (Entity entity : results.asIterable(fetchOps)) {
+      String author = (String)entity.getProperty("author");
       String content = (String)entity.getProperty("content");
       long timestampMillis = (long)entity.getProperty("timestampMillis");
       String currentDate = (String)entity.getProperty("currentDate");
-      Comment comment = new Comment(content, currentDate, timestampMillis);
+      Comment comment = new Comment(author,content, currentDate, timestampMillis);
       comments.add(comment);
     }
     Gson gson = new Gson();

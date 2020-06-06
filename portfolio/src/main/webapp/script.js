@@ -118,14 +118,24 @@ function showModal() {
     let commentForm = document.createElement("form");
     commentForm.setAttribute('method', "post");
     commentForm.setAttribute('action', "/new-comment");
+    let commentAuthor = document.createElement("input");
+    commentAuthor.setAttribute('type', "text");
+    commentAuthor.setAttribute('maxlength', "30");
+    commentAuthor.setAttribute('name', "commentAuthor");
+    commentAuthor.setAttribute('placeholder',"Name");
     let commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
+    commentText.setAttribute('maxlength', "30");
     commentText.setAttribute('name', "commentText");
+    commentText.setAttribute('placeholder',"Comment");
     let submitButton = document.createElement("input");
     submitButton.setAttribute('type', "submit");
     submitButton.setAttribute('value', "Submit");
 
+    commentForm.appendChild(commentAuthor);
+    commentForm.appendChild(document.createElement('br'));
     commentForm.appendChild(commentText);
+    commentForm.appendChild(document.createElement('br'));
     commentForm.appendChild(submitButton);
 
     modalBody.appendChild(commentForm);
@@ -146,7 +156,7 @@ window.onscroll = function() { scrollFunction() };
 function scrollFunction() {
   let scrollToTopButton = document.getElementById("scrollToTopButton");
   let navigationMenu = document.getElementById("navigationMenu");
-  // When the user scrolls down 20px from the top of the document, show the button
+  // When the user scrolls down 310px from the top of the document, show the button
   if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
     navigationMenu.classList.add("extendedBar");
     scrollToTopButton.style.display = "block";
@@ -162,18 +172,13 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-function loadComments() {
-  document.getElementById("commentsList").innerHTML = "";
-  fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
+async function loadComments() {
+  fetch('/comments-list').then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
-}
-
-function deleteComments() {
-  fetch("/delete-comments", { method: "delete" }).then(response => loadComments());
 }
 
 function createCommentElement(comment) {
@@ -182,14 +187,14 @@ function createCommentElement(comment) {
 
   const commentHeader = document.createElement('div');
   const nameElement = document.createElement('h3');
-  nameElement.innerText = "Anonymous";
+  nameElement.innerText = String(comment.author);
   const dateElement = document.createElement('p');
   dateElement.innerText = String(comment.currentDate);
   commentHeader.appendChild(nameElement)
   commentHeader.appendChild(dateElement);
   const commentContent = document.createElement('div');
   const contentElement = document.createElement('p1');
-  contentElement.innerText = comment.content;
+  contentElement.innerText = String(comment.content);
   commentContent.appendChild(contentElement);
 
   commentElement.appendChild(commentHeader);
@@ -197,7 +202,4 @@ function createCommentElement(comment) {
   return commentElement;
 }
 
-function getNumberOfComments() {
-  const numberOfCommentsMenu = document.getElementById("numberOfComments");
-  return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
-}
+
