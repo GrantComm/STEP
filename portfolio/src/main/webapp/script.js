@@ -54,7 +54,7 @@ function showModal() {
   let modalImage = document.getElementById("modalImage");
 
   // When the user clicks the button, open the modal 
-  eduButton.onclick = function() {
+  eduButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Education";
@@ -62,7 +62,7 @@ function showModal() {
     modalBody.innerText = "I am a rising sophomore at Morehouse College, majoring in Computer Science and minoring in Mathematics";
   }
 
-  interestsButton.onclick = function() {
+  interestsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Interests";
@@ -70,7 +70,7 @@ function showModal() {
     modalBody.innerText = "I am interested in backend and frontend mobile app development, gesture-based computing (Tony Stark-like interfaces), and bluetooth technology";
   }
 
-  funFactsButton.onclick = function() {
+  funFactsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Fun Facts";
@@ -78,7 +78,7 @@ function showModal() {
     modalBody.innerText = addRandomFact();
   }
 
-  mobileButton.onclick = function() {
+  mobileButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantShades.jpg';
@@ -86,7 +86,7 @@ function showModal() {
     modalBody.innerHTML = "I made a basic mobile app for Destined for Greatness Youth Outreach Center, a youth mentorship organization." + "\n DFG Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
   }
 
-  webButton.onclick = function() {
+  webButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantFishing.jpg';
@@ -94,7 +94,7 @@ function showModal() {
     modalBody.innerHTML = "I made the Morehouse23 website as a resource for students in my class." + "\n Morehouse Class of 2023 Website".link("https://morehouse23.info/");
   }
 
-  githubButton.onclick = function() {
+  githubButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Github";
@@ -102,7 +102,7 @@ function showModal() {
     modalBody.innerHTML = "View more of my projects on my " + "Github profile".link("https://github.com/GrantComm");
   }
 
-  skillsButton.onclick = function() {
+  skillsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Technologies";
@@ -110,7 +110,7 @@ function showModal() {
     modalBody.innerText = "I have experience using Java, C++, and webtechnologies";
   }
 
-  commentButton.onclick = function() {
+  commentButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
@@ -123,12 +123,12 @@ function showModal() {
     commentAuthor.setAttribute('type', "text");
     commentAuthor.setAttribute('maxlength', "30");
     commentAuthor.setAttribute('name', "commentAuthor");
-    commentAuthor.setAttribute('placeholder',"Name");
+    commentAuthor.setAttribute('placeholder', "Name");
     let commentText = document.createElement("input");
     commentText.setAttribute('type', "text");
     commentText.setAttribute('maxlength', "30");
     commentText.setAttribute('name', "commentText");
-    commentText.setAttribute('placeholder',"Comment");
+    commentText.setAttribute('placeholder', "Comment");
     let submitButton = document.createElement("input");
     submitButton.setAttribute('type', "submit");
     submitButton.setAttribute('value', "Submit");
@@ -143,14 +143,14 @@ function showModal() {
   }
 
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+  window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   }
 }
 
-window.onscroll = function() { scrollFunction() };
+window.onscroll = function () { scrollFunction() };
 
 // Expands or contracts the navbar and displays to top button on scroll
 
@@ -173,14 +173,27 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
+let pageNumber = 1;
 function loadComments() {
-  document.getElementById("commentsList").innerHTML = ""; 
-  fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
+  document.getElementById("commentsList").innerHTML = "";
+  fetch(`/comments-list?pageNumber=${pageNumber}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
+}
+
+function nextCommentsGroup() {
+  pageNumber++;
+  loadComments();
+}
+
+function previousCommentsGroup() {
+  if (pageNumber != 1) {
+    pageNumber--;
+    loadComments();
+  }
 }
 
 function deleteComments() {
@@ -205,11 +218,14 @@ function createCommentElement(comment) {
 
   commentElement.appendChild(commentHeader);
   commentElement.appendChild(commentContent);
-  return commentElement; 
+  return commentElement;
 }
 
 function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }
+
+
+
 

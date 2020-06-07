@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.search.query.QueryParser.query_return;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
@@ -46,16 +47,13 @@ public class CommentsListServlet extends HttpServlet {
   } 
   
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int maxComments = Integer.parseInt(request.getParameter("max")); 
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+    int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
+    int totalComments = datastore.prepare(query).countEntities(FetchOptions.Builder.withDefaults());
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withDefaults(); 
-    
-    if(maxComments != -1){
-      fetchOps = FetchOptions.Builder.withLimit(maxComments); 
-    }
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(3).offset((pageNumber -1) * 3);
     
     for (Entity entity : results.asIterable(fetchOps)) {
       String author = (String)entity.getProperty("author");
