@@ -50,7 +50,6 @@ public class CommentsListServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
     int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
-    int totalComments = datastore.prepare(query).countEntities(FetchOptions.Builder.withDefaults());
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
     FetchOptions fetchOps = FetchOptions.Builder.withLimit(3).offset((pageNumber -1) * 3);

@@ -182,6 +182,7 @@ function loadComments() {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
+
 }
 
 function nextCommentsGroup() {
