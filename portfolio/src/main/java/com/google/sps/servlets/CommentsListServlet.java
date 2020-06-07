@@ -32,33 +32,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;  
-
+import java.time.LocalDateTime;
 
 /** Servlet responsible for listing comments. */
 @WebServlet("/comments-list")
 public class CommentsListServlet extends HttpServlet {
-  
+
   private DatastoreService datastore;
-  
+
   @Override
-  public void init(){
+  public void init() {
     datastore = DatastoreServiceFactory.getDatastoreService();
-  } 
-  
+  }
+
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withLimit(3).offset((pageNumber -1) * 3);
-    
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(3).offset((pageNumber - 1) * 3);
+
     for (Entity entity : results.asIterable(fetchOps)) {
-      String author = (String)entity.getProperty("author");
-      String content = (String)entity.getProperty("content");
-      String currentDate = (String)entity.getProperty("currentDate");
-      long timestampMillis = (long)entity.getProperty("timestampMillis");
+      String author = (String) entity.getProperty("author");
+      String content = (String) entity.getProperty("content");
+      String currentDate = (String) entity.getProperty("currentDate");
+      long timestampMillis = (long) entity.getProperty("timestampMillis");
       Comment comment = new Comment(author, content, currentDate, timestampMillis);
       comments.add(comment);
     }

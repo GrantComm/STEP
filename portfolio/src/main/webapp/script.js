@@ -226,7 +226,3 @@ function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }
-
-
-
-
