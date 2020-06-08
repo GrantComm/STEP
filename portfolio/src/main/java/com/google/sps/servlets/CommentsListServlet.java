@@ -48,18 +48,20 @@ public class CommentsListServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+    int maxComments = 3; 
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withLimit(3).offset((pageNumber - 1) * 3);
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(maxComments).offset((pageNumber - 1) * maxComments);
 
     for (Entity entity : results.asIterable(fetchOps)) {
-      String author = (String) entity.getProperty("author");
-      String content = (String) entity.getProperty("content");
-      String currentDate = (String) entity.getProperty("currentDate");
-      long timestampMillis = (long) entity.getProperty("timestampMillis");
-      Comment comment = new Comment(author, content, currentDate, timestampMillis);
-      comments.add(comment);
+      comments.add(
+        new Comment(
+          (String) entity.getProperty("author"), 
+          (String) entity.getProperty("content"), 
+          (String) entity.getProperty("currentDate"), 
+          (long) entity.getProperty("timestampMillis")));
+      
     }
     Gson gson = new Gson();
     response.setContentType("application/json;");

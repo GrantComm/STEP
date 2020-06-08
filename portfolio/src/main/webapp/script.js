@@ -153,12 +153,12 @@ function showModal() {
 window.onscroll = function () { scrollFunction() };
 
 // Expands or contracts the navbar and displays to top button on scroll
-
+let pixelsScrolled = 310; 
 function scrollFunction() {
   let scrollToTopButton = document.getElementById("scrollToTopButton");
   let navigationMenu = document.getElementById("navigationMenu");
   // When the user scrolls down 310px from the top of the document, show the button
-  if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
+  if (document.body.scrollTop > pixelsScrolled || document.documentElement.scrollTop > pixelsScrolled) {
     navigationMenu.classList.add("extendedBar");
     scrollToTopButton.style.display = "block";
   } else {
@@ -182,7 +182,6 @@ function loadComments() {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
-
 }
 
 function nextCommentsGroup() {
@@ -191,10 +190,11 @@ function nextCommentsGroup() {
 }
 
 function previousCommentsGroup() {
-  if (pageNumber != 1) {
-    pageNumber--;
-    loadComments();
+  if (pageNumber <= 1) {
+    return;
   }
+  pageNumber--;
+  loadComments();
 }
 
 function deleteComments() {
@@ -207,7 +207,7 @@ function createCommentElement(comment) {
 
   const commentHeader = document.createElement('div');
   const nameElement = document.createElement('h3');
-  nameElement.innerText = String(comment.author);
+  nameElement.innerText = comment.author;
   const dateElement = document.createElement('p');
   dateElement.innerText = String(comment.currentDate);
   commentHeader.appendChild(nameElement)
