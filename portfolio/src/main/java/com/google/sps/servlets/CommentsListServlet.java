@@ -48,11 +48,11 @@ public class CommentsListServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-    int maxComments = 3; 
+    final int kMaxComments = 3; 
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withLimit(maxComments).offset((pageNumber - 1) * maxComments);
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(kMaxComments).offset((pageNumber - 1) * kMaxComments);
 
     for (Entity entity : results.asIterable(fetchOps)) {
       comments.add(
