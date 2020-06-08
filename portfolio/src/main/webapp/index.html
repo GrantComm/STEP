@@ -40,102 +40,110 @@
     <input type="submit" value="Submit">
   </form>
 
-
-  <div id="intro">
-    <div class="innerIntro">
-      <h1>Grant Commodore</h1>
-      <p id="test-text"></p>
-      <img src="images/profile.jpg" class="profile">
-      <h2>Rising Sophmore Computer Science Major, Mathematics Minor</h2>
-      <h2 style="padding-bottom: 15px;">Aspiring Software Engineer</h2>
-    </div>
-  </div>
-  <section class="aboutMeSection" id="aboutme">
-    <h2 class="sectionHeader">About Me</h2>
-    <hr class="round">
-    <div class="row">
-      <div id="education" class="column">
-        <h2>Education</h2>
-        <img class="rowImage" src="images/university.png">
-        <div>
-          <button id="eduButton" class="button" onclick="showModal()">Learn More</button>
-        </div>
-      </div>
-      <div id="interests" class="column">
-        <h2>Interests</h2>
-        <img class="rowImage" src="images/idea.png">
-        <div>
-          <button id="interestsButton" class="button" onclick="showModal()">Learn More</button>
-        </div>
-      </div>
-      <div id="funFacts" class="column">
-        <h2>Fun Facts</h2>
-        <img class="rowImage" src="images/football-ball.png">
-        <div>
-          <button id="funFactsButton" class="button" onclick="showModal()">Click for a Random Fact</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="sectionRow" id="projects">
-    <h2 class="sectionHeader">Projects</h2>
-    <hr class="round">
-    <div class="row">
-      <div class="column">
-        <h2>Web</h2>
-        <img class="rowImage" src="images/laptop.png">
-        <div>
-          <button id="webButton" class="button" onclick="showModal()">See Examples</button>
-        </div>
-      </div>
-      <div class="column">
-        <h2>Mobile</h2>
-        <img class="rowImage" src="images/mobile.png">
-        <div>
-          <button id="mobileButton" class="button" onclick="showModal()">See Examples</button>
-        </div>
-      </div>
-      <div class="column">
-        <h2>Github</h2>
-        <img class="rowImage" src="images/usb.png">
-        <div>
-          <button id="githubButton" class="button" onclick="showModal()">See Examples</button>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="sectionRow" id="skills">
-    <h2 class="sectionHeader">More</h2>
-    <hr class="round">
-    <div class="row">
-      <div class="column">
-        <h2>Technical Skills</h2>
-        <img class="rowImage" src="images/desktop.png">
-        <div>
-          <button id="skillsButton" class="button" onclick="showModal()">Show Details</button>
-        </div>
-      </div>
-    </div>
-  </section>
+	
+	<div id="intro">
+		<div class="innerIntro">
+			<h1>Grant Commodore</h1>
+			<p id="test-text"></p>
+			<img src="images/profile.jpg" class="profile">
+			<h2>Rising Sophmore Computer Science Major, Mathematics Minor</h2>
+			<h2 style="padding-bottom: 15px;">Aspiring Software Engineer</h2>
+		</div>
+	</div>
+	<section class="aboutMeSection" id="aboutme">
+		<h2 class="sectionHeader">About Me</h2>
+		<hr class="round">
+		<div class="row">
+			<div id="education" class="column">
+				<h2>Education</h2>
+				<img class="rowImage" src="images/university.png">
+				<div>
+					<button id="eduButton" class="button" onclick="showModal()">Learn More</button>
+				</div>
+			</div>
+			<div id="interests" class="column">
+				<h2>Interests</h2>
+				<img class="rowImage" src="images/idea.png">
+				<div>
+					<button id="interestsButton" class="button" onclick="showModal()">Learn More</button>
+				</div>
+			</div>
+			<div id="funFacts" class="column">
+				<h2>Fun Facts</h2>
+				<img class="rowImage" src="images/football-ball.png">
+				<div>
+					<button id="funFactsButton" class="button" onclick="showModal()">Click for a Random Fact</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sectionRow" id="projects">
+		<h2 class="sectionHeader">Projects</h2>
+		<hr class="round">
+		<div class="row">
+			<div class="column">
+				<h2>Web</h2>
+				<img class="rowImage" src="images/laptop.png">
+				<div>
+					<button id="webButton" class="button" onclick="showModal()">See Examples</button>
+				</div>
+			</div>
+			<div class="column">
+				<h2>Mobile</h2>
+				<img class="rowImage" src="images/mobile.png">
+				<div>
+					<button id="mobileButton" class="button" onclick="showModal()">See Examples</button>
+				</div>
+			</div>
+			<div class="column">
+				<h2>Github</h2>
+				<img class="rowImage" src="images/usb.png">
+				<div>
+					<button id="githubButton" class="button" onclick="showModal()">See Examples</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="sectionRow" id="skills">
+		<h2 class="sectionHeader">More</h2>
+		<hr class="round">
+		<div class="row">
+			<div class="column">
+				<h2>Technical Skills</h2>
+				<img class="rowImage" src="images/desktop.png">
+				<div>
+					<button id="skillsButton" class="button" onclick="showModal()">Show Details</button>
+				</div>
+			</div>
+		</div>
+	</section>
 
   <button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Back to Top</button>
   <button onclick="showModal()" id="commentButton" title="Submit a Comment">Submit a Comment</button>
 
-  <section class="sectionRow" id="comments">
-    <h2 class="sectionHeader">Comments</h2>
-    <hr class="round">
-    <!--<div id="commentNumberSelector">
-      <button id= "deleteCommentsButton" class="button" onclick="deleteComments()">Delete All Comments</button>     
-    </div> -->
-    <div id="commentsSection">
-      <ul id="commentsList">
-      </ul>
-    </div>
-    <div id="commentsControls">
-      <button onclick="previousCommentsGroup()" id="previousButton" title="Previous Comments" class="button">Previous</button>
-      <button onclick="nextCommentsGroup()" id="nextButton" title="Next Comments" class="button">Next</button>
-    </div>
-  </section>
+	<section class="sectionRow" id="comments">
+		<h2 class="sectionHeader">Comments</h2>
+		<hr class="round">
+		<div id="commentNumberSelector">
+			<label>Language: </label>
+			<select id = "selectedLanguage" onchange="loadComments()">
+				<option value="en">English</option>
+				<option value="fr">French</option>
+				<option value="de">German</option>
+				<option value="es">Spanish</option>
+				<option value="zh">Chinese</option>
+			</select>
+			<!-- <button id= "deleteCommentsButton" class="button" onclick="deleteComments()">Delete All Comments</button> -->
+		</div> 
+		<div id="commentsSection">
+			<ul id="commentsList">
+			</ul>
+		</div>
+		<div id="commentsControls">
+			<button onclick="previousCommentsGroup()" id="previousButton" title="Previous Comments" class="button">Previous</button>
+			<button onclick="nextCommentsGroup()" id="nextButton" title="Next Comments" class="button">Next</button>
+		</div>
+	</section>
 
   <div id="content">
     <h2 class="sectionHeader" style="padding-top:10px">Connect with Me</h2>
