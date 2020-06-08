@@ -438,3 +438,7 @@ body {
 #commentsControls {
   text-align: center;
 }
+
+#commentForm {
+  display: none;
+}

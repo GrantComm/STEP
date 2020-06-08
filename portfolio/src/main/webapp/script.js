@@ -115,30 +115,8 @@ function showModal() {
     modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
     modalBody.innerText = "Comment";
-
-    let commentForm = document.createElement("form");
-    commentForm.setAttribute('method', "post");
-    commentForm.setAttribute('action', "/new-comment");
-    let commentAuthor = document.createElement("input");
-    commentAuthor.setAttribute('type', "text");
-    commentAuthor.setAttribute('maxlength', "30");
-    commentAuthor.setAttribute('name', "commentAuthor");
-    commentAuthor.setAttribute('placeholder', "Name");
-    let commentText = document.createElement("input");
-    commentText.setAttribute('type', "text");
-    commentText.setAttribute('maxlength', "30");
-    commentText.setAttribute('name', "commentText");
-    commentText.setAttribute('placeholder', "Comment");
-    let submitButton = document.createElement("input");
-    submitButton.setAttribute('type', "submit");
-    submitButton.setAttribute('value', "Submit");
-
-    commentForm.appendChild(commentAuthor);
-    commentForm.appendChild(document.createElement('br'));
-    commentForm.appendChild(commentText);
-    commentForm.appendChild(document.createElement('br'));
-    commentForm.appendChild(submitButton);
-
+    commentForm = document.getElementById("commentForm");
+    commentForm.style.display = "block";  
     modalBody.appendChild(commentForm);
   }
 
