@@ -107,7 +107,7 @@ function showModal() {
     modalImage.style.display = "inline";
     modalHeader.innerText = "Technologies";
     modalImage.src = 'images/grantWalking.jpg';
-    modalBody.innerText = "I have experience using Java, C++, and webtechnologies";
+    modalBody.innerText = "I have working experience using Java, C++, and webtechnologies";
   }
 
   commentButton.onclick = function () {
