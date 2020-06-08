@@ -37,6 +37,7 @@ public class NewCommentServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Comment newComment = new Comment(
+      request.getParameter("commentAuthor"),
       request.getParameter("commentText"), 
       commentDateFormat.format(LocalDateTime.now()),
       System.currentTimeMillis());
@@ -46,5 +47,4 @@ public class NewCommentServlet extends HttpServlet {
 
     response.sendRedirect("/index.html");
   }
-  
 }

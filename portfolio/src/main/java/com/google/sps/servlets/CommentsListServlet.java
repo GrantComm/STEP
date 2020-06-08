@@ -20,6 +20,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.search.query.QueryParser.query_return;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
@@ -31,38 +32,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;  
-
+import java.time.LocalDateTime;
 
 /** Servlet responsible for listing comments. */
 @WebServlet("/comments-list")
 public class CommentsListServlet extends HttpServlet {
-  
+
   private DatastoreService datastore;
-  
+
   @Override
-  public void init(){
+  public void init() {
     datastore = DatastoreServiceFactory.getDatastoreService();
-  } 
-  
+  }
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    int maxComments = Integer.parseInt(request.getParameter("max")); 
+    int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+    final int kMaxComments = 3; 
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withDefaults(); 
-    
-    if(maxComments != -1){
-      fetchOps = FetchOptions.Builder.withLimit(maxComments); 
-    }
-    
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(kMaxComments).offset((pageNumber - 1) * kMaxComments);
+
     for (Entity entity : results.asIterable(fetchOps)) {
-      String content = (String)entity.getProperty("content");
-      long timestampMillis = (long)entity.getProperty("timestampMillis");
-      String currentDate = (String)entity.getProperty("currentDate");
-      Comment comment = new Comment(content, currentDate, timestampMillis);
-      comments.add(comment);
+      comments.add(
+        new Comment(
+          (String) entity.getProperty("author"), 
+          (String) entity.getProperty("content"), 
+          (String) entity.getProperty("currentDate"), 
+          (long) entity.getProperty("timestampMillis")));
+      
     }
     Gson gson = new Gson();
     response.setContentType("application/json;");

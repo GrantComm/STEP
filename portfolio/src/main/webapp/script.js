@@ -37,6 +37,7 @@ function showModal() {
   let eduButton = document.getElementById("eduButton");
   let interestsButton = document.getElementById("interestsButton");
   let funFactsButton = document.getElementById("funFactsButton");
+  funFactsButton.innerText = "Click for a Random Fact";
 
   // Variables for the projects row
   let mobileButton = document.getElementById("mobileButton");
@@ -53,23 +54,23 @@ function showModal() {
   let modalImage = document.getElementById("modalImage");
 
   // When the user clicks the button, open the modal 
-  eduButton.onclick = function() {
+  eduButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Education";
     modalImage.src = 'images/profile.jpg';
-    modalBody.innerText = "Morehouse College, Class of 2023";
+    modalBody.innerText = "I am a rising sophomore at Morehouse College, majoring in Computer Science and minoring in Mathematics";
   }
 
-  interestsButton.onclick = function() {
+  interestsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Interests";
     modalImage.src = 'images/grantSoccer.jpg';
-    modalBody.innerText = "Backend and Frontend Mobile App Development \n Gesture-Based Computing \n Bluetooth Technology";
+    modalBody.innerText = "I am interested in backend and frontend mobile app development, gesture-based computing (Tony Stark-like interfaces), and bluetooth technology";
   }
 
-  funFactsButton.onclick = function() {
+  funFactsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Fun Facts";
@@ -77,77 +78,65 @@ function showModal() {
     modalBody.innerText = addRandomFact();
   }
 
-  mobileButton.onclick = function() {
+  mobileButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantShades.jpg';
     modalHeader.innerText = "Mobile Development Projects";
-    modalBody.innerHTML = "DFG_Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
+    modalBody.innerHTML = "I made a basic mobile app for Destined for Greatness Youth Outreach Center, a youth mentorship organization." + "\n DFG Mobile".link("https://apps.apple.com/us/app/dfg-mobile/id1501790483?ign-mpt=uo%3D4");
   }
 
-  webButton.onclick = function() {
+  webButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalImage.src = 'images/grantFishing.jpg';
     modalHeader.innerText = "Web Development Projects";
-    modalBody.innerHTML = "Morehouse Class of 2023 Website".link("https://morehouse23.info/");
+    modalBody.innerHTML = "I made the Morehouse23 website as a resource for students in my class." + "\n Morehouse Class of 2023 Website".link("https://morehouse23.info/");
   }
 
-  githubButton.onclick = function() {
+  githubButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
     modalHeader.innerText = "Github";
     modalImage.src = 'images/grantStanding.jpg';
-    modalBody.innerHTML = "MyGithub Profile".link("https://github.com/GrantComm");
+    modalBody.innerHTML = "View more of my projects on my " + "Github profile".link("https://github.com/GrantComm");
   }
 
-  skillsButton.onclick = function() {
+  skillsButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "inline";
-    modalHeader.innerText = "Skills";
+    modalHeader.innerText = "Technologies";
     modalImage.src = 'images/grantWalking.jpg';
-    modalBody.innerText = "Java, Webtechnologies, Python, C++, ....";
+    modalBody.innerText = "I have working experience using Java, C++, and webtechnologies";
   }
 
-  commentButton.onclick = function() {
+  commentButton.onclick = function () {
     modal.style.display = "block";
     modalImage.style.display = "none";
     modalHeader.innerText = "Submit a Comment";
     modalBody.innerText = "Comment";
-
-    let commentForm = document.createElement("form");
-    commentForm.setAttribute('method', "post");
-    commentForm.setAttribute('action', "/new-comment");
-    let commentText = document.createElement("input");
-    commentText.setAttribute('type', "text");
-    commentText.setAttribute('name', "commentText");
-    let submitButton = document.createElement("input");
-    submitButton.setAttribute('type', "submit");
-    submitButton.setAttribute('value', "Submit");
-
-    commentForm.appendChild(commentText);
-    commentForm.appendChild(submitButton);
-
+    commentForm = document.getElementById("commentForm");
+    commentForm.style.display = "block";  
     modalBody.appendChild(commentForm);
   }
 
   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
+  window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   }
 }
 
-window.onscroll = function() { scrollFunction() };
+window.onscroll = function () { scrollFunction() };
 
 // Expands or contracts the navbar and displays to top button on scroll
-
+let pixelsScrolled = 310; 
 function scrollFunction() {
   let scrollToTopButton = document.getElementById("scrollToTopButton");
   let navigationMenu = document.getElementById("navigationMenu");
-  // When the user scrolls down 20px from the top of the document, show the button
-  if (document.body.scrollTop > 310 || document.documentElement.scrollTop > 310) {
+  // When the user scrolls down 310px from the top of the document, show the button
+  if (document.body.scrollTop > pixelsScrolled || document.documentElement.scrollTop > pixelsScrolled) {
     navigationMenu.classList.add("extendedBar");
     scrollToTopButton.style.display = "block";
   } else {
@@ -162,14 +151,28 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
+let pageNumber = 1;
 function loadComments() {
   document.getElementById("commentsList").innerHTML = "";
-  fetch(`/comments-list?max=${getNumberOfComments()}`).then(response => response.json()).then((comments) => {
+  fetch(`/comments-list?pageNumber=${pageNumber}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
     })
   });
+}
+
+function nextCommentsGroup() {
+  pageNumber++;
+  loadComments();
+}
+
+function previousCommentsGroup() {
+  if (pageNumber <= 1) {
+    return;
+  }
+  pageNumber--;
+  loadComments();
 }
 
 function deleteComments() {
@@ -182,14 +185,14 @@ function createCommentElement(comment) {
 
   const commentHeader = document.createElement('div');
   const nameElement = document.createElement('h3');
-  nameElement.innerText = "Anonymous";
+  nameElement.innerText = comment.author;
   const dateElement = document.createElement('p');
   dateElement.innerText = String(comment.currentDate);
   commentHeader.appendChild(nameElement)
   commentHeader.appendChild(dateElement);
   const commentContent = document.createElement('div');
   const contentElement = document.createElement('p1');
-  contentElement.innerText = comment.content;
+  contentElement.innerText = String(comment.content);
   commentContent.appendChild(contentElement);
 
   commentElement.appendChild(commentHeader);
