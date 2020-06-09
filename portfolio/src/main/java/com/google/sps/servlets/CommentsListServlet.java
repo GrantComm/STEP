@@ -24,6 +24,9 @@ import com.google.appengine.api.search.query.QueryParser.query_return;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
+import com.google.cloud.translate.Translation;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,21 +50,24 @@ public class CommentsListServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String languageCode = (String) request.getParameter("languageCode"); 
     int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
-    final int kMaxComments = 3; 
+    final int MAX_COMMENTS = 3; 
     Query query = new Query("Comment").addSort("timestampMillis", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
-    FetchOptions fetchOps = FetchOptions.Builder.withLimit(kMaxComments).offset((pageNumber - 1) * kMaxComments);
+    FetchOptions fetchOps = FetchOptions.Builder.withLimit(MAX_COMMENTS).offset((pageNumber - 1) * MAX_COMMENTS);
+    Translate translate = TranslateOptions.getDefaultInstance().getService(); 
 
     for (Entity entity : results.asIterable(fetchOps)) {
+      String originalContent = (String) entity.getProperty("content"); 
+      Translation translatedComment = translate.translate(originalContent, Translate.TranslateOption.targetLanguage(languageCode)); 
       comments.add(
         new Comment(
           (String) entity.getProperty("author"), 
-          (String) entity.getProperty("content"), 
+          translatedComment.getTranslatedText(), 
           (String) entity.getProperty("currentDate"), 
           (long) entity.getProperty("timestampMillis")));
-      
     }
     Gson gson = new Gson();
     response.setContentType("application/json;");

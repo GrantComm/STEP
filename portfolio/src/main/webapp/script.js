@@ -153,8 +153,9 @@ function topFunction() {
 
 let pageNumber = 1;
 function loadComments() {
+  let languageCode = document.getElementById('selectedLanguage').value;
   document.getElementById("commentsList").innerHTML = "";
-  fetch(`/comments-list?pageNumber=${pageNumber}`).then(response => response.json()).then((comments) => {
+  fetch(`/comments-list?pageNumber=${pageNumber}&languageCode=${languageCode}`).then(response => response.json()).then((comments) => {
     const commentListElement = document.getElementById('commentsList');
     comments.forEach((comment) => {
       commentListElement.appendChild(createCommentElement(comment));
