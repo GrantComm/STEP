@@ -221,5 +221,11 @@ function getNumberOfComments() {
 function createMap(mapElement) {
   const map = new google.maps.Map(
       mapElement,
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+      {center: {lat: 33.745972, lng: -84.413879}, zoom: 16});
+
+  const marker = new google.maps.Marker({
+    position: {lat: 33.745972, lng:-84.413879}, 
+    map: map,
+    title: 'Test Marker'
+  }); 
 }
