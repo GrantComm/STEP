@@ -44,8 +44,10 @@ function showModal() {
   let webButton = document.getElementById("webButton");
   let githubButton = document.getElementById("githubButton");
 
-  // Variables for the skills row
+  // Variables for the more row
   let skillsButton = document.getElementById("skillsButton");
+  let mapButton = document.getElementById("mapButton");
+  let map = document.getElementById("map"); 
 
   // Variables for the modal body and header
   let modal = document.getElementById("myModal");
@@ -118,6 +120,16 @@ function showModal() {
     commentForm = document.getElementById("commentForm");
     commentForm.style.display = "block";  
     modalBody.appendChild(commentForm);
+  }
+
+  mapButton.onclick = function () {
+    modal.style.display = "block";
+    modalImage.style.display = "none";
+    modalHeader.innerText = "Basic Map";
+    let map = document.getElementById("map"); 
+    map.style.display = "block";
+    createMap(); 
+    modalBody.appendChild(map);
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -204,4 +216,10 @@ function createCommentElement(comment) {
 function getNumberOfComments() {
   const numberOfCommentsMenu = document.getElementById("numberOfComments");
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
+}
+
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
 }
