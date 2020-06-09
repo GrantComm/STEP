@@ -226,6 +226,6 @@ function createMap(mapElement) {
   const marker = new google.maps.Marker({
     position: {lat: 33.745972, lng:-84.413879}, 
     map: map,
-    title: 'Test Marker'
+    title: 'Morehouse College'
   }); 
 }
