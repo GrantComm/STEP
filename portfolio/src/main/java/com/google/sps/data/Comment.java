@@ -25,5 +25,4 @@ public final class Comment {
     commentEntity.setProperty("timestampMillis", this.timestampMillis);
     return commentEntity; 
   }
-  
 }
