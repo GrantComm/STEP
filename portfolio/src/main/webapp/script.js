@@ -128,7 +128,7 @@ function showModal() {
     modalHeader.innerText = 'Basic Map';
     let map = document.getElementById('map'); 
     map.style.display = 'block';
-    createMap(); 
+    createMap(map); 
     modalBody.appendChild(map);
   }
 
@@ -218,8 +218,8 @@ function getNumberOfComments() {
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }
 
-function createMap() {
+function createMap(mapElement) {
   const map = new google.maps.Map(
-      document.getElementById('map'),
+      mapElement,
       {center: {lat: 37.422, lng: -122.084}, zoom: 16});
 }
