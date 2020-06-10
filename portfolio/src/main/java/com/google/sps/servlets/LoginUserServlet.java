@@ -33,7 +33,7 @@ import com.google.sps.data.User;
 /* Servlet that creates a comment*/
 @WebServlet("/login-user")
 public class LoginUserServlet extends HttpServlet {
-  final String URL = "/"; 
+  final private String URL = "/"; 
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
