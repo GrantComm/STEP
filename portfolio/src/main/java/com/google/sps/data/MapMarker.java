@@ -19,7 +19,7 @@ public final class MapMarker {
     Entity mapMarkerEntity = new Entity("mapMarker");
     mapMarkerEntity.setProperty("collegeName", this.collegeName);
     mapMarkerEntity.setProperty("internName", this.internName);
-    mapMarkerEntity.setProperty("longitude", this.longitude);
+    mapMarkerEntity.setProperty("longsitude", this.longitude);
     mapMarkerEntity.setProperty("latitude", this.latitude);
     return mapMarkerEntity; 
   }
