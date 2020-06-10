@@ -43,9 +43,9 @@ public class LoginUserServlet extends HttpServlet {
     User usr;
     
     if (loggedIn) {
-      usr = new User(loggedIn,userService.createLoginURL(URL)); 
+      usr = new User(loggedIn,userService.createLogoutURL(URL)); 
     } else {
-      usr = new User(loggedIn, userService.createLogoutURL(URL));
+      usr = new User(loggedIn, userService.createLoginURL(URL));
     }
     response.getWriter().println(new Gson().toJson(usr));
   } 
