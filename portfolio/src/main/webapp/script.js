@@ -219,12 +219,15 @@ function getNumberOfComments() {
 }
 
 function createMap(mapElement) {
+  const latitude = 33.745972;
+  const longitude = -84.413879; 
+  const zoomSize = 16;  
   const map = new google.maps.Map(
       mapElement,
-      {center: {lat: 33.745972, lng: -84.413879}, zoom: 16});
+      {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
 
   const marker = new google.maps.Marker({
-    position: {lat: 33.745972, lng:-84.413879}, 
+    position: {lat: latitude, lng: longitude}, 
     map: map,
     title: 'Morehouse College'
   }); 
