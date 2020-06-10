@@ -241,3 +241,9 @@ function addLocation(map, lat, lng, collegeName, internName) {
     info.open(map, marker); 
   });
 }
+
+function checkUser() {
+  fetch('/login-user').then(response => response.json()).then(status => {
+    if(status.)
+  });
+}
