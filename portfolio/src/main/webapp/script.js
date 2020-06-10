@@ -129,7 +129,7 @@ function showModal() {
     let map = document.getElementById('map'); 
     map.style.display = 'block';
     createMap(map); 
-    modalBody.appendChild(map);   
+    modalBody.appendChild(map);
   }
 
   // When the user clicks anywhere outside of the modal, close it
