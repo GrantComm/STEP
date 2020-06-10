@@ -221,12 +221,12 @@ function getNumberOfComments() {
 function createMap(mapElement) {
   const latitude = 33.745972;
   const longitude = -84.413879; 
-  const zoomSize = 16;  
+  const zoomSize = 6;  
   const map = new google.maps.Map(
       mapElement,
-      {center: {lat: 33.745972, lng: -84.413879}, zoom: 6});
+      {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
 
-  addLocation(map, 33.745972, -84.413879, 'Morehouse College', 'Grant Commodore');  
+  addLocation(map, latitude, longitude, 'Morehouse College', 'Grant Commodore');  
 }
 
 function addLocation(map, lat, lng, collegeName, internName) {
