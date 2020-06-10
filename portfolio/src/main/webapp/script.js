@@ -123,20 +123,13 @@ function showModal() {
   }
 
   mapButton.onclick = function () {
-    if (checkUser().loggedIn) {
-      modal.style.display = 'block';
-      modalImage.style.display = 'none';
-      modalHeader.innerText = 'Intern College Map';
-      let map = document.getElementById('map'); 
-      map.style.display = 'block';
-      createMap(map); 
-      modalBody.appendChild(map);  
-    } else {
-      modal.style.display = 'block';
-      modalImage.style.display = 'none';
-      modalHeader.innerText = 'Please Login to view Content';
-      modalBody.innerHTML = 'Login'.link(checkUser().url);
-    }
+    modal.style.display = 'block';
+    modalImage.style.display = 'none';
+    modalHeader.innerText = 'Intern College Map';
+    let map = document.getElementById('map'); 
+    map.style.display = 'block';
+    createMap(map); 
+    modalBody.appendChild(map);   
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -249,8 +242,8 @@ function addLocation(map, lat, lng, collegeName, internName) {
   });
 }
 
-function checkUser() {
+function checkUserLogin() {
   fetch('/login-user').then(response => response.json()).then(userStatus => {
-    return userStatus;
+    return userStatus.loggedIn; 
   });
 }
