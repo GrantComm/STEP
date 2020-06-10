@@ -26,20 +26,26 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.google.sps.data.Comment;
+import com.google.sps.data.User;
 
 
 /* Servlet that creates a comment*/
 @WebServlet("/login-user")
 public class LoginUserServlet extends HttpServlet {
-  final String 
+  final String URL = "/"; 
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
     UserService userService = UserServiceFactory.getUserService();
     boolean loggedIn = userService.isUserLoggedIn();
-  
+    User usr;
     
-    response.getWriter().println(new Gson().toJson());
-  }  
+    if(loggedIn){
+      usr = new User(loggedIn,userService.createLoginURL(URL)); 
+    }else{
+      usr = new User(loggedIn, userService.createLogoutURL(URL));
+    }
+    response.getWriter().println(new Gson().toJson(usr));
+  } 
 }
