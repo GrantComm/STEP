@@ -126,11 +126,14 @@ function showModal() {
     modal.style.display = 'block';
     modalImage.style.display = 'none';
     modalHeader.innerText = 'Intern College Map';
-    let map = document.getElementById('map'); 
+    mapForm = document.getElementById('mapForm');
+    mapForm.style.display = 'block'; 
+    map = document.getElementById('map'); 
     map.style.display = 'block';
     createMap(map); 
     modalBody.appendChild(map);
     getUserStatus();
+    modalBody.appendChild(mapForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
