@@ -125,7 +125,7 @@ function showModal() {
   mapButton.onclick = function () {
     modal.style.display = 'block';
     modalImage.style.display = 'none';
-    modalHeader.innerText = 'Basic Map';
+    modalHeader.innerText = 'Intern College Map';
     let map = document.getElementById('map'); 
     map.style.display = 'block';
     createMap(map); 
@@ -221,14 +221,23 @@ function getNumberOfComments() {
 function createMap(mapElement) {
   const latitude = 33.745972;
   const longitude = -84.413879; 
-  const zoomSize = 16;  
+  const zoomSize = 6;  
   const map = new google.maps.Map(
       mapElement,
       {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
 
+  addLocation(map, latitude, longitude, 'Morehouse College', 'Grant Commodore');  
+}
+
+function addLocation(map, lat, lng, collegeName, internName) {
   const marker = new google.maps.Marker({
-    position: {lat: latitude, lng: longitude}, 
+    position: {lat: lat, lng: lng}, 
     map: map,
-    title: 'Morehouse College'
-  }); 
+    title: collegeName
+  });
+
+  const info = new google.maps.InfoWindow({content: internName});
+  marker.addListener('click', () => {
+    info.open(map, marker); 
+  });
 }
