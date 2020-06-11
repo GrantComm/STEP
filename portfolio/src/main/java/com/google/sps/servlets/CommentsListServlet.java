@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-/** Servlet responsible for listing comments. */
+// Servlet responsible for listing comments. 
 @WebServlet("/comments-list")
 public class CommentsListServlet extends HttpServlet {
 

@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet responsible for listing comments. */
+// Servlet responsible for deleting comments. 
 @WebServlet("/delete-comments")
 public class DeleteCommentsServlet extends HttpServlet {
   private DatastoreService datastore;

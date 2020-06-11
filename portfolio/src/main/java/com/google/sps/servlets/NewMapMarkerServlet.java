@@ -33,7 +33,7 @@ import com.google.maps.model.GeocodingResult;
 import com.google.sps.data.MapMarker;
 import lombok.SneakyThrows;
 
-/* Servlet that creates a comment*/
+// Servlet that creates a map marker
 @WebServlet("/new-map-marker")
 public class NewMapMarkerServlet extends HttpServlet {
 

@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-/** Servlet responsible for listing comments. */
+// Servlet responsible for listing map markers. 
 @WebServlet("/map-markers-list")
 public class MapMarkersListServlet extends HttpServlet {
 

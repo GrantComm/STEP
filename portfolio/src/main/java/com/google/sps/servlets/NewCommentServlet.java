@@ -28,7 +28,7 @@ import com.google.sps.data.Comment;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
-/* Servlet that creates a comment*/
+// Servlet that creates a comment
 @WebServlet("/new-comment")
 public class NewCommentServlet extends HttpServlet {
   
