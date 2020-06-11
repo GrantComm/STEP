@@ -130,7 +130,7 @@ function showModal() {
     mapForm.style.display = 'block'; 
     map = document.getElementById('map'); 
     map.style.display = 'block';
-    loadMap(map); 
+    loadMap(map);
     modalBody.appendChild(map);
     getUserStatus();
     modalBody.appendChild(mapForm); 
