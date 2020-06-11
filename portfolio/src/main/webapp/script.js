@@ -130,8 +130,6 @@ function showModal() {
     mapForm.style.display = 'block'; 
     map = document.getElementById('map'); 
     map.style.display = 'block';
-    //loadMarkers(); 
-    //createMap(map); 
     loadMap(map); 
     modalBody.appendChild(map);
     getUserStatus();
@@ -224,18 +222,6 @@ function getNumberOfComments() {
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }
 
-/*
-function createMap(mapElement) {
-  const latitude = 33.745972;
-  const longitude = -84.413879; 
-  const zoomSize = 6;  
-  const map = new google.maps.Map(
-      mapElement,
-      {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
-  return map; 
-  //addLocation(map, latitude, longitude, 'Morehouse College', 'Grant Commodore');  
-}*/
-
 function addLocation(map, lat, lng, collegeName, internName) {
   const marker = new google.maps.Marker({
     position: {lat: lat, lng: lng}, 
@@ -267,18 +253,15 @@ function displayForm(isUserLoggedIn) {
 function loadMap(mapElement) {
   const latitude = 33.745972;
   const longitude = -84.413879; 
-  const zoomSize = 6;  
-  const map = new google.maps.Map(
-      mapElement,
-      {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
-  //document.getElementById('commentsList').innerHTML = '';
+  const zoomSize = 3;  
+  const map = new google.maps.Map(mapElement, {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
   fetch(`/map-markers-list`).then(response => response.json()).then((markers) => {
     markers.forEach((mapMarker) => {
       addLocation(
         map, 
         mapMarker.latitude, 
         mapMarker.longitude, 
-        mapMarker.collegeName. 
+        mapMarker.collegeName, 
         mapMarker.internName); 
     })
   });
