@@ -50,7 +50,7 @@ public class MapMarkersListServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String address = (String) request.getParameter("collegeAddress"); 
+    String address = (String)request.getParameter("collegeAddress"); 
     Query query = new Query("mapMarker");
     PreparedQuery results = datastore.prepare(query);
     List<MapMarker> mapMarkers = new ArrayList<>();
@@ -60,10 +60,10 @@ public class MapMarkersListServlet extends HttpServlet {
       String originalContent = (String) entity.getProperty("content"); 
       mapMarkers.add(
         new MapMarker(
-          (String) entity.getProperty("collegeName"), 
-          (String) entity.getProperty("internName"), 
-          (long) entity.getProperty("longitude"),
-          (long) entity.getProperty("latitude")));
+          (String)entity.getProperty("collegeName"), 
+          (String)entity.getProperty("internName"), 
+          (long)entity.getProperty("longitude"),
+          (long)entity.getProperty("latitude")));
     }
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(mapMarkers));

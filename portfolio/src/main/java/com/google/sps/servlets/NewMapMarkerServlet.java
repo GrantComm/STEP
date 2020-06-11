@@ -37,7 +37,8 @@ import lombok.SneakyThrows;
 @WebServlet("/new-map-marker")
 public class NewMapMarkerServlet extends HttpServlet {
 
-  private final GeoApiContext geoApiContext = new GeoApiContext.Builder().apiKey("AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M").build();
+  private final GeoApiContext geoApiContext = new GeoApiContext.Builder()
+    .apiKey("AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M").build();
    
   
   @Override
@@ -65,6 +66,6 @@ public class NewMapMarkerServlet extends HttpServlet {
   public  long getLatitude(String address) {
     GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
     GeocodingResult result = results[0];
-    return (long) result.geometry.location.lat;
+    return (long)result.geometry.location.lat;
   }
 }
