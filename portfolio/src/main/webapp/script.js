@@ -242,8 +242,12 @@ function addLocation(map, lat, lng, collegeName, internName) {
   });
 }
 
-function checkUserLogin() {
+function getUserStatus() {
   return fetch('/login-user').then(response => response.json()).then(userStatus => {
-    userStatus.loggedIn; 
+    userLoggedIn(userStatus.loggedIn); 
   });
+}
+
+function userLoggedIn(status) {
+  return status; 
 }
