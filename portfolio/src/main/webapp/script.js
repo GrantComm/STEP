@@ -54,6 +54,8 @@ function showModal() {
   let modalHeader = document.getElementById('modalHeader');
   let modalBody = document.getElementById('modalBody');
   let modalImage = document.getElementById('modalImage');
+  let mapForm = document.getElementById('mapForm');
+  let commentForm = document.getElementById('commentForm');
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function () {
@@ -117,7 +119,6 @@ function showModal() {
     modalImage.style.display = 'none';
     modalHeader.innerText = 'Submit a Comment';
     modalBody.innerText = 'Comment';
-    commentForm = document.getElementById('commentForm');
     commentForm.style.display = 'block';  
     modalBody.appendChild(commentForm);
   }
@@ -126,14 +127,13 @@ function showModal() {
     modal.style.display = 'block';
     modalImage.style.display = 'none';
     modalHeader.innerText = 'Intern College Map';
-    mapForm = document.getElementById('mapForm');
-    mapForm.style.display = 'block'; 
-    map = document.getElementById('map'); 
+    mapForm.style.display = 'block';  
     map.style.display = 'block';
-    loadMap(map);
+    modalBody.innerHTML= '';
     modalBody.appendChild(map);
     getUserStatus();
     modalBody.appendChild(mapForm); 
+    loadMapMarkers(map);
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -250,7 +250,7 @@ function displayForm(isUserLoggedIn) {
   }
 }
 
-function loadMap(mapElement) {
+function loadMapMarkers(mapElement) {
   const latitude = 33.745972;
   const longitude = -84.413879; 
   const zoomSize = 3;  
