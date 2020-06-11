@@ -2,6 +2,7 @@ package com.google.sps.data;
 
 import com.google.appengine.api.datastore.Entity;
 
+// A Marker on the map
 public final class MapMarker {
   private final String collegeName; 
   private final String internName; 
