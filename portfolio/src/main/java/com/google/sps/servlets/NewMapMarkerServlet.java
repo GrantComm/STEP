@@ -37,7 +37,7 @@ import lombok.SneakyThrows;
 @WebServlet("/new-map-marker")
 public class NewMapMarkerServlet extends HttpServlet {
 
-  private final GeoApiContext geoApiContext = new GeoApiContext.Builder().apiKey("").build();
+  private final GeoApiContext geoApiContext = new GeoApiContext.Builder().apiKey("AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M").build();
    
   
   @Override
