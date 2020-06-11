@@ -130,6 +130,7 @@ function showModal() {
     map.style.display = 'block';
     createMap(map); 
     modalBody.appendChild(map);
+    getUserStatus();
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -241,3 +242,19 @@ function addLocation(map, lat, lng, collegeName, internName) {
     info.open(map, marker); 
   });
 }
+
+function getUserStatus() {
+  fetch('/login-user').then(response => response.json()).then(userStatus => {
+      displayForm(userStatus.loggedIn);
+  }); 
+}
+
+
+function displayForm(isUserLoggedIn) {
+  if (isUserLoggedIn) {
+    console.log("Show the Form");
+  } else {
+    console.log("Dont do it"); 
+  }
+}
+
