@@ -66,7 +66,6 @@ public class MapMarkersListServlet extends HttpServlet {
           (long) entity.getProperty("latitude")));
     }
     Gson gson = new Gson();
-    response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(mapMarkers));
+    response.setContentType("application/json;").getWriter().println(gson.toJson(mapMarkers));
   }
 }
