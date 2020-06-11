@@ -30,7 +30,7 @@ import com.google.gson.Gson;
 import com.google.sps.data.User;
 
 
-/* Servlet that creates a comment*/
+// Servlet that creates a comment 
 @WebServlet("/login-user")
 public class LoginUserServlet extends HttpServlet {
   final private String URL = "/"; 

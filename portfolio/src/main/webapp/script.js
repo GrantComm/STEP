@@ -251,9 +251,9 @@ function getUserStatus() {
 
 
 function displayForm(isUserLoggedIn) {
-  if(isUserLoggedIn){
+  if (isUserLoggedIn) {
     console.log("Show the Form");
-  }else{
+  } else {
     console.log("Dont do it"); 
   }
 }
