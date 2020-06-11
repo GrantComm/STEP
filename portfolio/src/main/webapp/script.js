@@ -243,7 +243,7 @@ function addLocation(map, lat, lng, collegeName, internName) {
 }
 
 function checkUserLogin() {
-  fetch('/login-user').then(response => response.json()).then(userStatus => {
-    return userStatus.loggedIn; 
+  return fetch('/login-user').then(response => response.json()).then(userStatus => {
+    userStatus.loggedIn; 
   });
 }
