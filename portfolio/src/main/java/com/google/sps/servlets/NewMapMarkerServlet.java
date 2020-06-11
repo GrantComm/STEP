@@ -31,6 +31,7 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.sps.data.MapMarker;
+import lombok.SneakyThrows;
 
 /* Servlet that creates a comment*/
 @WebServlet("/new-map-marker")
@@ -52,13 +53,15 @@ public class NewMapMarkerServlet extends HttpServlet {
 
     response.sendRedirect("/index.html");
   }
-
+  
+  @SneakyThrows
   public long getLongitude(String address) {
     GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
     GeocodingResult result = results[0];
     return (long) result.geometry.location.lng;
   }
-
+  
+  @SneakyThrows
   public  long getLatitude(String address) {
     GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
     GeocodingResult result = results[0];
