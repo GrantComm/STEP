@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.api.gax.rpc.StatusCode;
+import com.google.appengine.api.capabilities.CapabilitiesPb.CapabilityConfig.Status;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -34,7 +37,6 @@ import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.sps.data.MapMarker;
 
-
 // Servlet that creates a map marker
 @WebServlet("/new-map-marker")
 public class NewMapMarkerServlet extends HttpServlet {
@@ -45,22 +47,28 @@ public class NewMapMarkerServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     try {
-      MapMarker newMapMarker = new MapMarker(
-        request.getParameter("collegeName"), 
-        request.getParameter("internName"),
-        (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
-        (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
+      MapMarker newMapMarker = new MapMarker(request.getParameter("collegeName"), request.getParameter("internName"),
+          (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
+          (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(newMapMarker.makeEntity());
 
       response.sendRedirect("/index.html");
-    } catch (IOException | NotFoundException e) {
-        throw new IOException(e.getMessage());
-    }
+    } catch (ApiException e) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    } catch (IOException e) {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+    } catch (InterruptedException e) {
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+    } 
   }
 
-  public GeocodingResult getLngLat(String address) throws NotFoundException, ApiException, IOException {
+  public GeocodingResult getLngLat(String address) throws  ApiException, IOException, InterruptedException, 
+    NotFoundException {
       GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
+      if (results.length < 1) {
+        throw new NotFoundException("Geocoding Result Array is Empty");
+      }
       GeocodingResult result = results[0];
       return result;
   } 
