@@ -44,18 +44,18 @@ public class NewMapMarkerServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    try{
-    MapMarker newMapMarker = new MapMarker(
-      request.getParameter("collegeName"), 
-      request.getParameter("internName"),
-      (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
-      (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(newMapMarker.makeEntity());
+    try {
+      MapMarker newMapMarker = new MapMarker(
+        request.getParameter("collegeName"), 
+        request.getParameter("internName"),
+        (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
+        (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(newMapMarker.makeEntity());
 
-    response.sendRedirect("/index.html");
+      response.sendRedirect("/index.html");
     } catch (IOException | NotFoundException e) {
-      throw new IOException(e.getMessage());
+        throw new IOException(e.getMessage());
     }
   }
 
