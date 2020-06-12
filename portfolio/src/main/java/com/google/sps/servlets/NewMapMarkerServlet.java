@@ -46,15 +46,15 @@ public class NewMapMarkerServlet extends HttpServlet {
     MapMarker newMapMarker = new MapMarker(
       request.getParameter("collegeName"),
       request.getParameter("internName"), 
-      getLongitude(request.getParameter("collegeAddress")),
-      getLatitude(request.getParameter("collegeAddress")));
+      (long)getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
+      (long)getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
       
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(newMapMarker.makeEntity());
 
     response.sendRedirect("/index.html");
   }
-  
+  /*
   @SneakyThrows
   public long getLongitude(String address) {
     GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
@@ -67,5 +67,13 @@ public class NewMapMarkerServlet extends HttpServlet {
     GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
     GeocodingResult result = results[0];
     return (long)result.geometry.location.lat;
-  }
+  } */
+
+  @SneakyThrows
+  public GeocodingResult getLngLat(String address) {
+    GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
+    GeocodingResult result = results[0];
+    return result; 
+  } 
 }
+
