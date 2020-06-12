@@ -57,7 +57,7 @@ public class NewMapMarkerServlet extends HttpServlet {
     } catch (ApiException e) {
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     } catch (IOException e) {
-        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     } catch (InterruptedException e) {
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     } 
@@ -66,7 +66,7 @@ public class NewMapMarkerServlet extends HttpServlet {
   public GeocodingResult getLngLat(String address) throws  ApiException, IOException, InterruptedException, 
     NotFoundException {
       GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
-      if (results.length < 1) {
+      if (results.length == 0) {
         throw new NotFoundException("Geocoding Result Array is Empty");
       }
       GeocodingResult result = results[0];
