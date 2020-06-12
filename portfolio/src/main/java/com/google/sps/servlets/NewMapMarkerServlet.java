@@ -33,7 +33,7 @@ import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.sps.data.MapMarker;
-// import lombok.SneakyThrows;
+
 
 // Servlet that creates a map marker
 @WebServlet("/new-map-marker")
@@ -59,7 +59,6 @@ public class NewMapMarkerServlet extends HttpServlet {
     }
   }
 
-  // @SneakyThrows
   public GeocodingResult getLngLat(String address) throws NotFoundException {
     try {
       GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();

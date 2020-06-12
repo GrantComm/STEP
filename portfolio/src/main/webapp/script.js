@@ -48,14 +48,19 @@ function showModal() {
   let skillsButton = document.getElementById('skillsButton');
   let mapButton = document.getElementById('mapButton');
   let mapElement = document.getElementById('map'); 
+  mapElement.style.display = 'none'; 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
   let modalHeader = document.getElementById('modalHeader');
   let modalBody = document.getElementById('modalBody');
   let modalImage = document.getElementById('modalImage');
+  
+  // Variables for the forms
   let mapForm = document.getElementById('mapForm');
+  mapForm.style.display = 'none'; 
   let commentForm = document.getElementById('commentForm');
+  commentForm.style.display = 'none'; 
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function () {
@@ -124,16 +129,16 @@ function showModal() {
   }
 
   mapButton.onclick = function () {
+    modalBody.innerHTML= '';
     modal.style.display = 'block';
     modalImage.style.display = 'none';
-    modalHeader.innerText = 'Intern College Map';
+    modalHeader.innerText = 'Intern College Map'; 
     mapForm.style.display = 'block';  
-    map.style.display = 'block';
-    modalBody.innerHTML= '';
-    modalBody.appendChild(mapElement);
+    mapElement.style.display = 'block';
     getUserStatus();
-    modalBody.appendChild(mapForm); 
     loadMapMarkers(createMap(mapElement));
+    modalBody.appendChild(mapElement);
+    modalBody.appendChild(mapForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
