@@ -47,13 +47,20 @@ function showModal() {
   // Variables for the more row
   let skillsButton = document.getElementById('skillsButton');
   let mapButton = document.getElementById('mapButton');
-  let map = document.getElementById('map'); 
+  let mapElement = document.getElementById('map'); 
+  mapElement.style.display = 'none'; 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
   let modalHeader = document.getElementById('modalHeader');
   let modalBody = document.getElementById('modalBody');
   let modalImage = document.getElementById('modalImage');
+  
+  // Variables for the forms
+  let mapForm = document.getElementById('mapForm');
+  mapForm.style.display = 'none'; 
+  let commentForm = document.getElementById('commentForm');
+  commentForm.style.display = 'none'; 
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function () {
@@ -117,20 +124,21 @@ function showModal() {
     modalImage.style.display = 'none';
     modalHeader.innerText = 'Submit a Comment';
     modalBody.innerText = 'Comment';
-    commentForm = document.getElementById('commentForm');
     commentForm.style.display = 'block';  
     modalBody.appendChild(commentForm);
   }
 
   mapButton.onclick = function () {
+    modalBody.innerHTML= '';
     modal.style.display = 'block';
     modalImage.style.display = 'none';
-    modalHeader.innerText = 'Intern College Map';
-    let map = document.getElementById('map'); 
-    map.style.display = 'block';
-    createMap(map); 
-    modalBody.appendChild(map);
+    modalHeader.innerText = 'Intern College Map'; 
+    mapForm.style.display = 'block';  
+    mapElement.style.display = 'block';
     getUserStatus();
+    loadMapMarkers(createMap(mapElement));
+    modalBody.appendChild(mapElement);
+    modalBody.appendChild(mapForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -219,17 +227,6 @@ function getNumberOfComments() {
   return numberOfCommentsMenu.options[numberOfCommentsMenu.selectedIndex].value;
 }
 
-function createMap(mapElement) {
-  const latitude = 33.745972;
-  const longitude = -84.413879; 
-  const zoomSize = 6;  
-  const map = new google.maps.Map(
-      mapElement,
-      {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
-
-  addLocation(map, latitude, longitude, 'Morehouse College', 'Grant Commodore');  
-}
-
 function addLocation(map, lat, lng, collegeName, internName) {
   const marker = new google.maps.Marker({
     position: {lat: lat, lng: lng}, 
@@ -258,3 +255,23 @@ function displayForm(isUserLoggedIn) {
   }
 }
 
+function createMap(mapElement) {
+  const latitude = 33.745972;
+  const longitude = -84.413879; 
+  const zoomSize = 3;  
+  const map = new google.maps.Map(mapElement, {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
+  return map; 
+}
+
+function loadMapMarkers(map) {
+  fetch(`/map-markers-list`).then(response => response.json()).then((markers) => {
+    markers.forEach((mapMarker) => {
+      addLocation(
+        map, 
+        mapMarker.latitude, 
+        mapMarker.longitude, 
+        mapMarker.collegeName, 
+        mapMarker.internName); 
+    })
+  });
+}

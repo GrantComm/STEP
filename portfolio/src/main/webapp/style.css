@@ -446,5 +446,9 @@ body {
 #map {
   display: none;
   border: thin solid black;
-  height: 500px;
+  height: 370px;
+}
+
+#mapForm {
+  display: none;
 }
