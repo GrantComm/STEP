@@ -47,7 +47,7 @@ function showModal() {
   // Variables for the more row
   let skillsButton = document.getElementById('skillsButton');
   let mapButton = document.getElementById('mapButton');
-  let map = document.getElementById('map'); 
+  let mapElement = document.getElementById('map'); 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
@@ -130,10 +130,10 @@ function showModal() {
     mapForm.style.display = 'block';  
     map.style.display = 'block';
     modalBody.innerHTML= '';
-    modalBody.appendChild(map);
+    modalBody.appendChild(mapElement);
     getUserStatus();
     modalBody.appendChild(mapForm); 
-    loadMapMarkers(map);
+    loadMapMarkers(createMap(mapElement));
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -250,11 +250,15 @@ function displayForm(isUserLoggedIn) {
   }
 }
 
-function loadMapMarkers(mapElement) {
+function createMap(mapElement) {
   const latitude = 33.745972;
   const longitude = -84.413879; 
   const zoomSize = 3;  
   const map = new google.maps.Map(mapElement, {center: {lat: latitude, lng: longitude}, zoom: zoomSize});
+  return map; 
+}
+
+function loadMapMarkers(map) {
   fetch(`/map-markers-list`).then(response => response.json()).then((markers) => {
     markers.forEach((mapMarker) => {
       addLocation(
