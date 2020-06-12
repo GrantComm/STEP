@@ -59,13 +59,9 @@ public class NewMapMarkerServlet extends HttpServlet {
     }
   }
 
-  public GeocodingResult getLngLat(String address) throws NotFoundException {
-    try {
+  public GeocodingResult getLngLat(String address) throws NotFoundException, ApiException, IOException {
       GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
       GeocodingResult result = results[0];
       return result;
-    } catch (ApiException | InterruptedException | IOException e) {
-        throw new NotFoundException(e.getMessage());
-    } 
   } 
 }
