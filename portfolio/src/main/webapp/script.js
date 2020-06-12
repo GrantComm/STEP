@@ -49,6 +49,8 @@ function showModal() {
   let mapButton = document.getElementById('mapButton');
   let mapElement = document.getElementById('map'); 
   mapElement.style.display = 'none'; 
+  let donateButton = document.getElementById('donateButton');
+  let chart = document.getElementById('chart-container'); 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
@@ -139,6 +141,17 @@ function showModal() {
     loadMapMarkers(createMap(mapElement));
     modalBody.appendChild(mapElement);
     modalBody.appendChild(mapForm); 
+  }
+  
+    donateButton.onclick = function () {
+    modalBody.innerHTML= '';
+    modal.style.display = 'block';
+    modalImage.style.display = 'none';
+    modalHeader.innerText = 'Make a Difference';
+    chart.style.display = 'block';
+    drawChart();  
+    modalBody.appendChild(chart);
+    //modalBody.appendChild(mapForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -274,4 +287,28 @@ function loadMapMarkers(map) {
         mapMarker.internName); 
     })
   });
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Animal');
+  data.addColumn('number', 'Count');
+        data.addRows([
+          ['Lions', 10],
+          ['Tigers', 5],
+          ['Bears', 15]
+        ]);
+
+  const options = {
+    'title': 'Zoo Animals',
+    'width':500,
+    'height':400
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
 }

@@ -452,3 +452,7 @@ body {
 #mapForm {
   display: none;
 }
+
+#chart-container { 
+  display: none; 
+}
