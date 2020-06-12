@@ -49,8 +49,7 @@ public class MapMarkersListServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String address = (String)request.getParameter("collegeAddress"); 
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException { 
     Query query = new Query("mapMarker");
     PreparedQuery results = datastore.prepare(query);
     List<MapMarker> mapMarkers = new ArrayList<>();
