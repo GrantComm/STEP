@@ -27,38 +27,46 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.search.checkers.GeoPointChecker;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
+import com.google.maps.errors.ApiException;
+import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.AddressComponent;
 import com.google.maps.model.AddressComponentType;
 import com.google.maps.model.GeocodingResult;
 import com.google.sps.data.MapMarker;
-import lombok.SneakyThrows;
+// import lombok.SneakyThrows;
 
 // Servlet that creates a map marker
 @WebServlet("/new-map-marker")
 public class NewMapMarkerServlet extends HttpServlet {
 
   private final GeoApiContext geoApiContext = new GeoApiContext.Builder()
-    .apiKey("AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M").build();
-   
-  
+      .apiKey("AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M").build();
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    try{
     MapMarker newMapMarker = new MapMarker(
-      request.getParameter("collegeName"),
-      request.getParameter("internName"), 
-      (long)getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
-      (long)getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
-      
+      request.getParameter("collegeName"), 
+      request.getParameter("internName"),
+      (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lng,
+      (long) getLngLat(request.getParameter("collegeAddress")).geometry.location.lat);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(newMapMarker.makeEntity());
 
     response.sendRedirect("/index.html");
+    } catch (IOException | NotFoundException e) {
+      throw new IOException(e.getMessage());
+    }
   }
 
-  @SneakyThrows
-  public GeocodingResult getLngLat(String address) {
-    GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
-    GeocodingResult result = results[0];
-    return result; 
+  // @SneakyThrows
+  public GeocodingResult getLngLat(String address) throws NotFoundException {
+    try {
+      GeocodingResult[] results = GeocodingApi.geocode(geoApiContext, address).await();
+      GeocodingResult result = results[0];
+      return result;
+    } catch (ApiException | InterruptedException | IOException e) {
+        throw new NotFoundException(e.getMessage());
+    } 
   } 
 }

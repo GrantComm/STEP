@@ -59,10 +59,10 @@ public class MapMarkersListServlet extends HttpServlet {
       String originalContent = (String) entity.getProperty("content"); 
       mapMarkers.add(
         new MapMarker(
-          (String)entity.getProperty("collegeName"), 
-          (String)entity.getProperty("internName"), 
-          (long)entity.getProperty("longitude"),
-          (long)entity.getProperty("latitude")));
+          (String) entity.getProperty("collegeName"), 
+          (String) entity.getProperty("internName"), 
+          (long) entity.getProperty("longitude"),
+          (long) entity.getProperty("latitude")));
     }
     response.setContentType("application/json;");
     response.getWriter().println(new Gson().toJson(mapMarkers));
