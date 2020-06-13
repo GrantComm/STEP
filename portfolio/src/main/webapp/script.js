@@ -50,7 +50,7 @@ function showModal() {
   let mapElement = document.getElementById('map'); 
   mapElement.style.display = 'none'; 
   let donateButton = document.getElementById('donateButton');
-  let chart = document.getElementById('chart-container'); 
+  let chartElement = document.getElementById('chart-container'); 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
@@ -147,10 +147,10 @@ function showModal() {
     modalBody.innerHTML= '';
     modal.style.display = 'block';
     modalImage.style.display = 'none';
-    modalHeader.innerText = 'Make a Difference';
-    chart.style.display = 'block';
-    drawChart();  
-    modalBody.appendChild(chart);
+    modalHeader.innerText = 'Weekend Activities';
+    chartElement.style.display = 'block';
+    drawChart(chartElement);  
+    modalBody.appendChild(chartElement);
     //modalBody.appendChild(mapForm); 
   }
 
@@ -292,23 +292,24 @@ function loadMapMarkers(map) {
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+function drawChart(chartElement) {
   const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Animal');
+  data.addColumn('string', 'Activities');
   data.addColumn('number', 'Count');
         data.addRows([
-          ['Lions', 10],
-          ['Tigers', 5],
-          ['Bears', 15]
+          ['Fishing', 15],
+          ['Netflix/Hulu', 7],
+          ['Programming', 12],
+          ['Playing Soccer', 11]
         ]);
 
   const options = {
-    'title': 'Zoo Animals',
-    'width':500,
+    'title': `How I spend my Weekends`,
+    'width':510,
     'height':400
   };
 
   const chart = new google.visualization.PieChart(
-      document.getElementById('chart-container'));
+      chartElement);
   chart.draw(data, options);
 }
