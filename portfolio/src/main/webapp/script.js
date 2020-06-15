@@ -272,7 +272,6 @@ function displayForm(userStatus, userUrl) {
     loginMessage.innerHTML = 'Login ' + 'here'.link(userUrl) + ' to add to the intern map';
     modalBody.appendChild(loginMessage);  
   }
-  
 }
 
 function createMap(mapElement) {
