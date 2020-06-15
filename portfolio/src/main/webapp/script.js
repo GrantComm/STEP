@@ -256,7 +256,7 @@ function addLocation(map, lat, lng, collegeName, internName) {
 
 function getUserStatus() {
   fetch('/login-user').then(response => response.json()).then(userStatus => {
-      displayForm(userStatus.loggedIn, userStatus.url);
+    displayForm(userStatus.loggedIn, userStatus.url);
   }); 
 }
 
