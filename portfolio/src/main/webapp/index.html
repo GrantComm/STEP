@@ -6,6 +6,7 @@
   <title>Grant Commodore's Portfolio Project</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfSokI5WnEOJZg12yfV-mINDnFaClsj6M"></script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <script src="script.js"></script>
 </head>
 
@@ -56,6 +57,9 @@
     <br>
     <input type="submit">
   </form>
+  
+  <!--The Chart-->
+  <div id="chartContainer"></div>
   
   <!--Login Message-->
   <div id="loginMessage"></div>
@@ -141,7 +145,14 @@
           <button id="mapButton" class="button" onclick="showModal()">Show Map</button>
         </div>
       </div>
-    </div>
+      <div class="column">
+        <h2>Weekends</h2>
+        <img class="rowImage" src="images/sofa.png">
+        <div>
+          <button id="activityButton" class="button" onclick="showModal()">Learn More</button>
+        </div>
+      </div>
+   </div>
   </section>
 
   <button onclick="topFunction()" id="scrollToTopButton" title="Go to top">Back to Top</button>

@@ -49,6 +49,8 @@ function showModal() {
   let mapButton = document.getElementById('mapButton');
   let mapElement = document.getElementById('map'); 
   mapElement.style.display = 'none'; 
+  let activityButton = document.getElementById('activityButton');
+  let chartElement = document.getElementById('chartContainer'); 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
@@ -139,6 +141,16 @@ function showModal() {
     loadMapMarkers(createMap(mapElement));
     modalBody.appendChild(mapElement);
     modalBody.appendChild(mapForm); 
+  }
+  
+  activityButton.onclick = function () {
+    modalBody.innerHTML= '';
+    modal.style.display = 'block';
+    modalImage.style.display = 'none';
+    modalHeader.innerText = 'Weekend Activities';
+    chartElement.style.display = 'block';
+    drawChart(chartElement);  
+    modalBody.appendChild(chartElement);
   }
 
   // When the user clicks anywhere outside of the modal, close it
@@ -274,4 +286,29 @@ function loadMapMarkers(map) {
         mapMarker.internName); 
     })
   });
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart(chartElement) {
+  const dataTable = new google.visualization.DataTable();
+  dataTable.addColumn('string', 'Activities');
+  dataTable.addColumn('number', 'Count');
+        dataTable.addRows([
+          ['Fishing', 15],
+          ['Netflix/Hulu', 7],
+          ['Programming', 12],
+          ['Playing Soccer', 11]
+        ]);
+
+  const options = {
+    'title': 'How I spend my Weekends',
+    'width': 510,
+    'height': 400
+  };
+
+  const chart = new google.visualization.PieChart(
+      chartElement);
+  chart.draw(dataTable, options);
 }
