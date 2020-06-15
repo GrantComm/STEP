@@ -63,6 +63,7 @@ function showModal() {
   mapForm.style.display = 'none'; 
   let commentForm = document.getElementById('commentForm');
   commentForm.style.display = 'none'; 
+  let loginMessage = document.getElementById('loginMessage');
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function () {
@@ -137,9 +138,10 @@ function showModal() {
     modalHeader.innerText = 'Intern College Map'; 
     mapForm.style.display = 'block';  
     mapElement.style.display = 'block';
-    getUserStatus();
     loadMapMarkers(createMap(mapElement));
     modalBody.appendChild(mapElement);
+    modalBody.appendChild(loginMessage); 
+    getUserStatus();
     modalBody.appendChild(mapForm); 
   }
   
@@ -254,16 +256,17 @@ function addLocation(map, lat, lng, collegeName, internName) {
 
 function getUserStatus() {
   fetch('/login-user').then(response => response.json()).then(userStatus => {
-      displayForm(userStatus.loggedIn);
+    displayForm(userStatus.loggedIn, userStatus.url);
   }); 
 }
 
-
-function displayForm(isUserLoggedIn) {
-  if (isUserLoggedIn) {
-    console.log("Show the Form");
+function displayForm(userStatus, userUrl) {
+  if (userStatus) {
+    loginMessage.innerHTML = 'Logout ' + 'here.'.link(userUrl);
+    modalBody.appendChild(mapForm); 
   } else {
-    console.log("Dont do it"); 
+    mapForm.style.display = 'none'; 
+    loginMessage.innerHTML = 'Login ' + 'here'.link(userUrl) + ' to add to the intern map.';  
   }
 }
 
@@ -303,12 +306,11 @@ function drawChart(chartElement) {
         ]);
 
   const options = {
-    'title': 'How I spend my Weekends',
+    'title': 'How I spend my weekends',
     'width': 510,
     'height': 400
   };
 
-  const chart = new google.visualization.PieChart(
-      chartElement);
+  const chart = new google.visualization.PieChart(chartElement);
   chart.draw(dataTable, options);
 }
