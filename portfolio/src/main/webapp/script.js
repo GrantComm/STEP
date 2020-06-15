@@ -262,15 +262,11 @@ function getUserStatus() {
 
 function displayForm(userStatus, userUrl) {
   if (userStatus) {
-    console.log('Show the Form');
-    loginMessage.innerHTML = 'Logout ' + 'here'.link(userUrl);
-    modalBody.appendChild(loginMessage);
+    loginMessage.innerHTML = 'Logout ' + 'here.'.link(userUrl);
     modalBody.appendChild(mapForm); 
   } else {
     mapForm.style.display = 'none'; 
-    console.log('Don\'t show the form');
-    loginMessage.innerHTML = 'Login ' + 'here'.link(userUrl) + ' to add to the intern map';
-    modalBody.appendChild(loginMessage);  
+    loginMessage.innerHTML = 'Login ' + 'here'.link(userUrl) + ' to add to the intern map.';  
   }
 }
 
@@ -310,12 +306,11 @@ function drawChart(chartElement) {
         ]);
 
   const options = {
-    'title': 'How I spend my Weekends',
+    'title': `How I spend my weekends`,
     'width': 510,
     'height': 400
   };
 
-  const chart = new google.visualization.PieChart(
-      chartElement);
+  const chart = new google.visualization.PieChart(chartElement);
   chart.draw(dataTable, options);
 }
