@@ -306,7 +306,7 @@ function drawChart(chartElement) {
         ]);
 
   const options = {
-    'title': `How I spend my weekends`,
+    'title': 'How I spend my weekends',
     'width': 510,
     'height': 400
   };
