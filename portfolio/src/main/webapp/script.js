@@ -292,10 +292,10 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart(chartElement) {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Activities');
-  data.addColumn('number', 'Count');
-        data.addRows([
+  const dataTable = new google.visualization.DataTable();
+  dataTable.addColumn('string', 'Activities');
+  dataTable.addColumn('number', 'Count');
+        dataTable.addRows([
           ['Fishing', 15],
           ['Netflix/Hulu', 7],
           ['Programming', 12],
@@ -303,12 +303,12 @@ function drawChart(chartElement) {
         ]);
 
   const options = {
-    'title': `How I spend my Weekends`,
+    'title': 'How I spend my Weekends',
     'width':510,
     'height':400
   };
 
   const chart = new google.visualization.PieChart(
       chartElement);
-  chart.draw(data, options);
+  chart.draw(dataTable, options);
 }
