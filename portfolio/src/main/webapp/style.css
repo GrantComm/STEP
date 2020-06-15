@@ -456,3 +456,8 @@ body {
 #chartContainer { 
   display: none; 
 }
+
+#loginMessage {
+  display: block; 
+  font-size: 15px; 
+}

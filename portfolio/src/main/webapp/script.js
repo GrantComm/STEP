@@ -63,6 +63,7 @@ function showModal() {
   mapForm.style.display = 'none'; 
   let commentForm = document.getElementById('commentForm');
   commentForm.style.display = 'none'; 
+  let loginMessage = document.getElementById('loginMessage');
 
   // When the user clicks the button, open the modal 
   eduButton.onclick = function () {
@@ -139,8 +140,8 @@ function showModal() {
     mapElement.style.display = 'block';
     loadMapMarkers(createMap(mapElement));
     modalBody.appendChild(mapElement);
+    modalBody.appendChild(loginMessage); 
     getUserStatus();
-    modalBody.appendChild(mapForm); 
   }
   
   activityButton.onclick = function () {
@@ -254,18 +255,23 @@ function addLocation(map, lat, lng, collegeName, internName) {
 
 function getUserStatus() {
   fetch('/login-user').then(response => response.json()).then(userStatus => {
-      displayForm(userStatus.loggedIn);
+      displayForm(userStatus.loggedIn, userStatus.url);
   }); 
 }
 
-
-function displayForm(isUserLoggedIn) {
-  if (isUserLoggedIn) {
-    console.log("Show the Form");
-    modalBody.appendChild(mapForm);
+function displayForm(userStatus, userUrl) {
+  if (userStatus) {
+    console.log('Show the Form');
+    loginMessage.innerHTML = 'Logout ' + 'here'.link(userUrl);
+    modalBody.appendChild(loginMessage);
+    modalBody.appendChild(mapForm); 
   } else {
-    modalBody.appendChild("Login to add a Marker"); 
+    mapForm.style.display = 'none'; 
+    console.log('Don\'t show the form');
+    loginMessage.innerHTML = 'Login ' + 'here'.link(userUrl) + ' to add to the intern map';
+    modalBody.appendChild(loginMessage);  
   }
+  
 }
 
 function createMap(mapElement) {
