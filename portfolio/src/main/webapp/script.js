@@ -137,9 +137,9 @@ function showModal() {
     modalHeader.innerText = 'Intern College Map'; 
     mapForm.style.display = 'block';  
     mapElement.style.display = 'block';
-    getUserStatus();
     loadMapMarkers(createMap(mapElement));
     modalBody.appendChild(mapElement);
+    getUserStatus();
     modalBody.appendChild(mapForm); 
   }
   
@@ -262,8 +262,9 @@ function getUserStatus() {
 function displayForm(isUserLoggedIn) {
   if (isUserLoggedIn) {
     console.log("Show the Form");
+    modalBody.appendChild(mapForm);
   } else {
-    console.log("Dont do it"); 
+    modalBody.appendChild("Login to add a Marker"); 
   }
 }
 
