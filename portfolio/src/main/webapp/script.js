@@ -142,6 +142,7 @@ function showModal() {
     modalBody.appendChild(mapElement);
     modalBody.appendChild(loginMessage); 
     getUserStatus();
+    modalBody.appendChild(mapForm); 
   }
   
   activityButton.onclick = function () {
