@@ -49,7 +49,7 @@ function showModal() {
   let mapButton = document.getElementById('mapButton');
   let mapElement = document.getElementById('map'); 
   mapElement.style.display = 'none'; 
-  let donateButton = document.getElementById('donateButton');
+  let activityButton = document.getElementById('activityButton');
   let chartElement = document.getElementById('chart-container'); 
 
   // Variables for the modal body and header
@@ -143,7 +143,7 @@ function showModal() {
     modalBody.appendChild(mapForm); 
   }
   
-    donateButton.onclick = function () {
+    activityButton.onclick = function () {
     modalBody.innerHTML= '';
     modal.style.display = 'block';
     modalImage.style.display = 'none';
