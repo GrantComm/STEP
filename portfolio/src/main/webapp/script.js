@@ -50,7 +50,7 @@ function showModal() {
   let mapElement = document.getElementById('map'); 
   mapElement.style.display = 'none'; 
   let activityButton = document.getElementById('activityButton');
-  let chartElement = document.getElementById('chart-container'); 
+  let chartElement = document.getElementById('chartContainer'); 
 
   // Variables for the modal body and header
   let modal = document.getElementById('myModal');
@@ -143,7 +143,7 @@ function showModal() {
     modalBody.appendChild(mapForm); 
   }
   
-    activityButton.onclick = function () {
+  activityButton.onclick = function () {
     modalBody.innerHTML= '';
     modal.style.display = 'block';
     modalImage.style.display = 'none';
@@ -304,8 +304,8 @@ function drawChart(chartElement) {
 
   const options = {
     'title': 'How I spend my Weekends',
-    'width':510,
-    'height':400
+    'width': 510,
+    'height': 400
   };
 
   const chart = new google.visualization.PieChart(
