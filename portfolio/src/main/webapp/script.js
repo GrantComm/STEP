@@ -151,7 +151,6 @@ function showModal() {
     chartElement.style.display = 'block';
     drawChart(chartElement);  
     modalBody.appendChild(chartElement);
-    //modalBody.appendChild(mapForm); 
   }
 
   // When the user clicks anywhere outside of the modal, close it
