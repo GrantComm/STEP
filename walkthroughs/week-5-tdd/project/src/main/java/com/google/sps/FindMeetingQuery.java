@@ -70,24 +70,27 @@ public final class FindMeetingQuery {
     acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
 
     // Set the end time and start time as the end of the first event 
-    int end = importantEvents.get(0).getWhen().end(); 
-    int start = importantEvents.get(0).getWhen().end(); 
+    int end = importantEvents.get(0).getWhen().end();
+     
     // Iterate through the rest of the events 
     for (Event event : importantEvents) {
+      int start = event.getWhen().start(); 
       if (event.getWhen().start() >= end) {
-        end = event.getWhen().end();
-        start = event.getWhen().start();   
+        end = event.getWhen().end();  
       }
+      
       if (checkMeetingDuration(TimeRange.fromStartEnd(end, start, false), request.getDuration())) {
         acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, start, false)); 
         end = event.getWhen().end();
-      } 
+      }
     }
     
+    // If there is still time between the last meeting and the end of the day, add the time range
     if (checkMeetingDuration(TimeRange.fromStartEnd(end, END_OF_DAY, false), request.getDuration())) {
       acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, END_OF_DAY, true));
     }
     
+    // If there are no available times, clear make sure no range is returned 
     if (acceptableMeetingTimes.get(0).duration() == TimeRange.fromStartEnd(0, 0, false).duration()) {
       acceptableMeetingTimes.clear(); 
     }
@@ -95,7 +98,8 @@ public final class FindMeetingQuery {
     return acceptableMeetingTimes; 
   }
   
+  // Check if the meeting duration fits within a given time range
   private static boolean checkMeetingDuration(TimeRange range, long meetingDuration) {
     return (range.duration() >= meetingDuration);
-  } 
+  }
 }
