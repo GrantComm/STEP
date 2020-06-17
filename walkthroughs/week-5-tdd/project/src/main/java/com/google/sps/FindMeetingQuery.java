@@ -66,25 +66,20 @@ public final class FindMeetingQuery {
     
     // Add the event that starts first
     acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
-
+    
     // Set the end time and start time as the end of the first event 
     int latestEventEnd = importantEvents.get(0).getWhen().end();
-    int prevStart = importantEvents.get(0).getWhen().start();
-    int prevEnd = importantEvents.get(0).getWhen().start();  
+    int start = importantEvents.get(0).getWhen().start();
     // Iterate through the events and add times where the request duration fits
     for (Event event : importantEvents) {
-      int start = event.getWhen().start();
+      start = event.getWhen().start();
        
       if (start >= latestEventEnd) {
         if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
           acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
+          latestEventEnd = event.getWhen().end(); 
         }
         latestEventEnd = event.getWhen().end(); 
-        if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
-          acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
-          latestEventEnd = event.getWhen().end();
-          prevStart = event.getWhen().start(); 
-        }
       }
       
       if (start <= latestEventEnd) {
@@ -93,13 +88,11 @@ public final class FindMeetingQuery {
           if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
             acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
             latestEventEnd = event.getWhen().end();
-            prevStart = event.getWhen().start(); 
           } 
         }
         if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
           acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
           latestEventEnd = event.getWhen().end();
-          prevStart = event.getWhen().start(); 
         }
       } 
     }
