@@ -14,10 +14,88 @@
 
 package com.google.sps;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator; 
+import java.util.List;
 
 public final class FindMeetingQuery {
-  public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+  //public static final int START_OF_DAY = TimeRange.getTimeInMinutes(0, 0);
+  private static final int END_OF_DAY = TimeRange.getTimeInMinutes(23, 59);
+  //private static final int WHOLE_DAY = TimeRange.getTimeInMinutes(0, 24 * 60);
+  
+  private static final Comparator<Event> ORDER_BY_START = new Comparator<Event>() {
+    @Override
+    public int compare(Event a, Event b) {
+      return Long.compare(a.getWhen().start(), b.getWhen().start());
+    }};
+    
+  private List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
+  
+  public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) {
+    List<String> meetingAttendees = new ArrayList<String>(request.getAttendees());
+    List<Event> events = new ArrayList<Event>(eventCollection);
+    List<Event> importantEvents = new ArrayList<Event>();  
+    
+    // Too long of a request
+    if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
+      return acceptableMeetingTimes; 
+    }
+    
+    // No events or attendees
+    if (events.isEmpty() || meetingAttendees.isEmpty()) {
+      acceptableMeetingTimes.add(
+        TimeRange.WHOLE_DAY); 
+      return acceptableMeetingTimes;
+    }
+    
+    // Ignores People not Attending
+    for (Event event : events) {
+      if (!Collections.disjoint(event.getAttendees(), request.getAttendees())) {
+        importantEvents.add(event); 
+      }
+    }
+    
+    // If the list of important events is empty, return 
+    if (importantEvents.isEmpty()) {
+      acceptableMeetingTimes.add(TimeRange.WHOLE_DAY); 
+      return acceptableMeetingTimes; 
+    }
+    
+    // Order the events by their start time 
+    Collections.sort(importantEvents, ORDER_BY_START); 
+    
+    // Add the event that starts first
+    acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
+
+    // Set the end time and start time as the end of the first event 
+    int end = importantEvents.get(0).getWhen().end(); 
+    int start = importantEvents.get(0).getWhen().end(); 
+    // Iterate through the rest of the events 
+    for (Event event : importantEvents) {
+      if (event.getWhen().start() >= end) {
+        end = event.getWhen().end();
+        start = event.getWhen().start();   
+      }
+      if (checkMeetingDuration(TimeRange.fromStartEnd(end, start, false), request.getDuration())) {
+        acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, start, false)); 
+        end = event.getWhen().end();
+      } 
+    }
+    
+    if (checkMeetingDuration(TimeRange.fromStartEnd(end, END_OF_DAY, false), request.getDuration())) {
+      acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, END_OF_DAY, true));
+    }
+    
+    if (acceptableMeetingTimes.get(0).duration() == TimeRange.fromStartEnd(0, 0, false).duration()) {
+      acceptableMeetingTimes.clear(); 
+    }
+    
+    return acceptableMeetingTimes; 
   }
+  
+  private static boolean checkMeetingDuration(TimeRange range, long meetingDuration) {
+    return (range.duration() >= meetingDuration);
+  } 
 }
