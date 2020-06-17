@@ -21,46 +21,44 @@ import java.util.Comparator;
 import java.util.List;
 
 public final class FindMeetingQuery {
-  //public static final int START_OF_DAY = TimeRange.getTimeInMinutes(0, 0);
-  private static final int END_OF_DAY = TimeRange.getTimeInMinutes(23, 59);
-  //private static final int WHOLE_DAY = TimeRange.getTimeInMinutes(0, 24 * 60);
   
   private static final Comparator<Event> ORDER_BY_START = new Comparator<Event>() {
     @Override
     public int compare(Event a, Event b) {
       return Long.compare(a.getWhen().start(), b.getWhen().start());
     }};
-    
-  private List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
   
-  public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) {
-    List<String> meetingAttendees = new ArrayList<String>(request.getAttendees());
-    List<Event> events = new ArrayList<Event>(eventCollection);
-    List<Event> importantEvents = new ArrayList<Event>();  
+  public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) { 
+    List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
+    acceptableMeetingTimes.clear(); 
     
     // Too long of a request
     if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
-      return acceptableMeetingTimes; 
+      return Collections.emptyList(); 
     }
     
     // No events or attendees
+    List<Event> events = new ArrayList<Event>(eventCollection);
+    List<String> meetingAttendees = new ArrayList<String>(request.getAttendees());
     if (events.isEmpty() || meetingAttendees.isEmpty()) {
       acceptableMeetingTimes.add(
         TimeRange.WHOLE_DAY); 
       return acceptableMeetingTimes;
     }
     
-    // Ignores People not Attending
+    // Ignores unattended events
+    List<Event> importantEvents = new ArrayList<Event>(); 
     for (Event event : events) {
       if (!Collections.disjoint(event.getAttendees(), request.getAttendees())) {
         importantEvents.add(event); 
       }
     }
     
-    // If the list of important events is empty, return 
+    // If the list of important events is empty, return the whole day 
     if (importantEvents.isEmpty()) {
-      acceptableMeetingTimes.add(TimeRange.WHOLE_DAY); 
-      return acceptableMeetingTimes; 
+      acceptableMeetingTimes.add(
+        TimeRange.WHOLE_DAY); 
+      return acceptableMeetingTimes;
     }
     
     // Order the events by their start time 
@@ -70,25 +68,47 @@ public final class FindMeetingQuery {
     acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
 
     // Set the end time and start time as the end of the first event 
-    int end = importantEvents.get(0).getWhen().end();
-     
-    // Iterate through the rest of the events 
+    int latestEventEnd = importantEvents.get(0).getWhen().end();
+    int prevStart = importantEvents.get(0).getWhen().start();
+    int prevEnd = importantEvents.get(0).getWhen().start();  
+    // Iterate through the events and add times where the request duration fits
     for (Event event : importantEvents) {
-      int start = event.getWhen().start(); 
-      if (event.getWhen().start() >= end) {
-        end = event.getWhen().end();  
+      int start = event.getWhen().start();
+       
+      if (start >= latestEventEnd) {
+        if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
+          acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
+        }
+        latestEventEnd = event.getWhen().end(); 
+        if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
+          acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
+          latestEventEnd = event.getWhen().end();
+          prevStart = event.getWhen().start(); 
+        }
       }
       
-      if (checkMeetingDuration(TimeRange.fromStartEnd(end, start, false), request.getDuration())) {
-        acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, start, false)); 
-        end = event.getWhen().end();
-      }
+      if (start <= latestEventEnd) {
+        if (latestEventEnd < event.getWhen().end()) {
+          latestEventEnd = event.getWhen().end();
+          if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
+            acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
+            latestEventEnd = event.getWhen().end();
+            prevStart = event.getWhen().start(); 
+          } 
+        }
+        if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
+          acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
+          latestEventEnd = event.getWhen().end();
+          prevStart = event.getWhen().start(); 
+        }
+      } 
     }
     
     // If there is still time between the last meeting and the end of the day, add the time range
-    if (checkMeetingDuration(TimeRange.fromStartEnd(end, END_OF_DAY, false), request.getDuration())) {
-      acceptableMeetingTimes.add(TimeRange.fromStartEnd(end, END_OF_DAY, true));
+    if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, TimeRange.END_OF_DAY, false), request.getDuration())) {
+      acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, TimeRange.END_OF_DAY, true));
     }
+  
     
     // If there are no available times, clear make sure no range is returned 
     if (acceptableMeetingTimes.get(0).duration() == TimeRange.fromStartEnd(0, 0, false).duration()) {
@@ -99,7 +119,7 @@ public final class FindMeetingQuery {
   }
   
   // Check if the meeting duration fits within a given time range
-  private static boolean checkMeetingDuration(TimeRange range, long meetingDuration) {
+  private static boolean rangeLessThanDuration(TimeRange range, long meetingDuration) {
     return (range.duration() >= meetingDuration);
   }
 }
