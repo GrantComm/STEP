@@ -74,7 +74,7 @@ public final class FindMeetingQuery {
     for (Event event : importantEvents) {
       start = event.getWhen().start();
        
-      if (start >= latestEventEnd) {
+      if (start > latestEventEnd) {
         if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
           acceptableMeetingTimes.add(TimeRange.fromStartEnd(latestEventEnd, start, false)); 
           latestEventEnd = event.getWhen().end(); 
@@ -82,7 +82,7 @@ public final class FindMeetingQuery {
         latestEventEnd = event.getWhen().end(); 
       }
       
-      if (start <= latestEventEnd) {
+      if (start < latestEventEnd) {
         if (latestEventEnd < event.getWhen().end()) {
           latestEventEnd = event.getWhen().end();
           if (rangeLessThanDuration(TimeRange.fromStartEnd(latestEventEnd, start, false), request.getDuration())) {
@@ -105,7 +105,11 @@ public final class FindMeetingQuery {
     
     // If there are no available times, clear make sure no range is returned 
     if (acceptableMeetingTimes.get(0).duration() == TimeRange.fromStartEnd(0, 0, false).duration()) {
-      acceptableMeetingTimes.clear(); 
+      if (acceptableMeetingTimes.size() > 1) {
+        acceptableMeetingTimes.remove(0); 
+      } else {
+        acceptableMeetingTimes.clear();
+      } 
     }
     
     return acceptableMeetingTimes; 
