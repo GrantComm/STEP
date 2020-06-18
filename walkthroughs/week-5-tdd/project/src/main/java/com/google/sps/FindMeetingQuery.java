@@ -69,6 +69,7 @@ public final class FindMeetingQuery {
     // Set the end time and start time as the end of the first event 
     int latestEventEnd = importantEvents.get(0).getWhen().end();
     int start = importantEvents.get(0).getWhen().start();
+    
     // Iterate through the events and add times where the request duration fits
     for (Event event : importantEvents) {
       start = event.getWhen().start();
