@@ -28,9 +28,8 @@ public final class FindMeetingQuery {
     public int compare(Event a, Event b) {
       return Long.compare(a.getWhen().start(), b.getWhen().start());
     }};
-  
+
   public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) { 
-    
     // Too long of a request
     if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
       return Collections.emptyList(); 
@@ -61,8 +60,7 @@ public final class FindMeetingQuery {
     
     // Instantiate the list of acceptable meeting times and ensure it is empty
     List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
-    acceptableMeetingTimes.clear();
-    
+   
     // Add the event that starts first
     acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
     
