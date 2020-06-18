@@ -15,6 +15,7 @@
 package com.google.sps;
 
 import java.util.ArrayList;
+import java.util.Arrays; 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator; 
@@ -29,21 +30,17 @@ public final class FindMeetingQuery {
     }};
   
   public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) { 
-    List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
-    acceptableMeetingTimes.clear(); 
     
     // Too long of a request
     if (request.getDuration() > TimeRange.WHOLE_DAY.duration()) {
       return Collections.emptyList(); 
     }
     
-    // No events or attendees
+    // No events or attendees 
     List<Event> events = new ArrayList<Event>(eventCollection);
     List<String> meetingAttendees = new ArrayList<String>(request.getAttendees());
     if (events.isEmpty() || meetingAttendees.isEmpty()) {
-      acceptableMeetingTimes.add(
-        TimeRange.WHOLE_DAY); 
-      return acceptableMeetingTimes;
+      return Arrays.asList(TimeRange.WHOLE_DAY); 
     }
     
     // Ignores unattended events
@@ -56,13 +53,15 @@ public final class FindMeetingQuery {
     
     // If the list of important events is empty, return the whole day 
     if (importantEvents.isEmpty()) {
-      acceptableMeetingTimes.add(
-        TimeRange.WHOLE_DAY); 
-      return acceptableMeetingTimes;
+     return Arrays.asList(TimeRange.WHOLE_DAY);
     }
     
     // Order the events by their start time 
     Collections.sort(importantEvents, ORDER_BY_START); 
+    
+    // Instantiate the list of acceptable meeting times and ensure it is empty
+    List<TimeRange> acceptableMeetingTimes = new ArrayList<TimeRange>();
+    acceptableMeetingTimes.clear();
     
     // Add the event that starts first
     acceptableMeetingTimes.add(TimeRange.fromStartEnd(0, importantEvents.get(0).getWhen().start(), false)); 
@@ -103,7 +102,7 @@ public final class FindMeetingQuery {
     }
   
     
-    // If there are no available times, clear make sure no range is returned 
+    // If the first acceptable time range is zero, check to see if it is the only timerange in the list 
     if (acceptableMeetingTimes.get(0).duration() == TimeRange.fromStartEnd(0, 0, false).duration()) {
       if (acceptableMeetingTimes.size() > 1) {
         acceptableMeetingTimes.remove(0); 
