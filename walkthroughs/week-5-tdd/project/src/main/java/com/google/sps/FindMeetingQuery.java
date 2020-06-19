@@ -31,20 +31,18 @@ public final class FindMeetingQuery {
     
   public Collection<TimeRange> query(Collection<Event> eventCollection, MeetingRequest request) {
     Collection<String> attendees = new ArrayList<String>(); 
-    if (!request.getOptionalAttendees().isEmpty()) {
-      attendees.addAll(request.getOptionalAttendees());
-      if (!request.getAttendees().isEmpty()) {
-        attendees.addAll(request.getAttendees());
-      }
-      return queryHelper(eventCollection, request, attendees); 
+    attendees.addAll(request.getOptionalAttendees());
+    attendees.addAll(request.getAttendees()); 
+    if (request.getOptionalAttendees().isEmpty()) {
+      attendees.removeAll(request.getOptionalAttendees());
     }
-    if(!request.getAttendees().isEmpty()) {
-      attendees.addAll(request.getAttendees());
-      if (!request.getAttendees().isEmpty()) {
-        attendees.addAll(request.getAttendees());
-      }
+    if (request.getAttendees().isEmpty()) {
+      attendees.removeAll(request.getAttendees()); 
+    }
+    if (queryHelper(eventCollection, request, attendees).isEmpty()) {
+      attendees.removeAll(request.getOptionalAttendees());
       return queryHelper(eventCollection, request, attendees);
-    } 
+    }
     return queryHelper(eventCollection, request, attendees);   
   }
   
