@@ -37,8 +37,8 @@ public final class MeetingRequestTest {
 
   @Test
   public void CantAddOptionalAttendeeWhoIsAlsoMandatory() {
-    MeetingRequest request = new MeetingRequest(Arrays.asList(PERSON_A), DURATION_1_HOUR);
-    request.addOptionalAttendee(PERSON_A);
+    MeetingRequest request = new MeetingRequest(Arrays.asList(PERSON_C), DURATION_1_HOUR);
+    request.addOptionalAttendee(PERSON_C);
 
     int actual = request.getOptionalAttendees().size();
     int expected = 0;
