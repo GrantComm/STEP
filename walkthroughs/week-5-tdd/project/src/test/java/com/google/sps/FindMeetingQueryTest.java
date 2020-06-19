@@ -277,7 +277,8 @@ public final class FindMeetingQueryTest {
   }
   
   @Test
-  public void OptionalAttendeeConsidered() {
+  public void optionalAttendeeConsidered() {
+    // The optional attendee has gaps that allow a meeting with the required attendees
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_1000AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_A)),
@@ -293,22 +294,21 @@ public final class FindMeetingQueryTest {
     Collection<TimeRange> actual = query.query(events, request);
     Collection<TimeRange> expected = Arrays.asList(
       TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_1000AM, false),
-      TimeRange.fromStartEnd(TIME_1130AM, TimeRange.END_OF_DAY, true));
+      TimeRange.fromStartEnd(TIME_1130cAM, TimeRange.END_OF_DAY, true));
 
     Assert.assertEquals(expected, actual);
   }
   
   @Test
   public void optionalAttendeeNotConsidered() {
-    // 
+    // Optional attendee has no time to meet and is therefore not considered
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_A)),
         new Event("Event 2", TimeRange.fromStartDuration(TIME_0900AM, DURATION_30_MINUTES),
             Arrays.asList(PERSON_B)),
         new Event("Event 3",TimeRange.WHOLE_DAY, Arrays.asList(PERSON_C)));
-        
-
+    
     MeetingRequest request =
       new MeetingRequest(Arrays.asList(PERSON_A, PERSON_B), DURATION_30_MINUTES);
     request.addOptionalAttendee(PERSON_C); 
@@ -324,6 +324,8 @@ public final class FindMeetingQueryTest {
   
   @Test
   public void noRoomForOptionalAttendee() {
+    // Optional Attendee has a meeting that results in the time slot available
+    //  for attendees being too small
     Collection<Event> events = Arrays.asList(
         new Event("Event 1", TimeRange.fromStartEnd(TimeRange.START_OF_DAY, TIME_0830AM, false),
             Arrays.asList(PERSON_A)),
@@ -344,6 +346,7 @@ public final class FindMeetingQueryTest {
   
   @Test
   public void twoOptionalAttendeesWithGaps() {
+    // Only two optional attendees are considered who have gaps in their schedule
     Collection<Event> events = Arrays.asList(
     new Event("Event 1", TimeRange.fromStartDuration(TIME_0800AM, DURATION_30_MINUTES),
       Arrays.asList(PERSON_A)),
@@ -381,7 +384,5 @@ public final class FindMeetingQueryTest {
 
     Assert.assertEquals(expected, actual);
   }
-  
-  
+   
 }
-
